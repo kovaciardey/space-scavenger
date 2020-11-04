@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
+    public float walkSpeed = 10f;
+    public float lookSpeed = 10f;
 
     private CharacterController characterController;
     private Camera mainCamera;
@@ -30,28 +31,55 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.anyKey)
+        if (Input.GetButtonDown("Fire1"))
+        {
+            LookAtMouse();
+        }
+
+        if (
+            Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")
+            )
         {
             MoveCharacter();
         }
+
+        DebugForward();
     }
 
     private void MoveCharacter()
     {
-        Vector3 rightMovement = sideVector * speed * Time.deltaTime * Input.GetAxis("IsometricRight");
-        Vector3 upMovement = upVector * speed * Time.deltaTime * Input.GetAxis("IsometricUp");
+        Vector3 rightMovement = sideVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricRight");
+        Vector3 upMovement = upVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricUp");
 
         Vector3 movement = rightMovement + upMovement;
         Vector3 direction = movement.normalized;
 
         //TODO: Look At the speed when moving diagonally
  
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + direction * 4);
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-
         transform.forward = direction;
         characterController.Move(movement);
+    }
+
+    private void LookAtMouse()
+    {
+        Plane playerPlane = new Plane(Vector3.up, transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        float hitdist = 0.0f;
+        if (playerPlane.Raycast(ray, out hitdist))
+        {
+            Vector3 targetPoint = ray.GetPoint(hitdist);
+            targetPoint.y = 0;
+
+            transform.forward = targetPoint;
+        }
+    }
+
+    private void DebugForward()
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position + transform.forward * 4);
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
     }
 }
