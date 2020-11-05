@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         LookAtMouse();
 
+        // Nu tine cont de faptul ca se apasa pe click atunci cand canFire = false
+
         if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
         {
             MoveCharacter();
@@ -52,6 +54,8 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = movement.normalized;
 
         //TODO: Look At the speed when moving diagonally
+
+        //TODO: don't allow movement while shooting
  
         //transform.forward = direction;
         characterController.Move(movement);

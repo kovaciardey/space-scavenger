@@ -30,14 +30,13 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
 
-            GameObject instantiatedBullet = Instantiate(bullet, transform.position, transform.rotation);
+            GameObject instantiatedBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
             instantiatedBullet.transform.forward = transform.forward;
 
-            Physics.IgnoreCollision(instantiatedBullet.GetComponent<Collider>(), GetComponent<Collider>());
+            //Physics.IgnoreCollision(instantiatedBullet.GetComponent<Collider>(), GetComponent<Collider>());
 
             yield return new WaitForSeconds(fireRate);
             canFire = true;
         }
-      
     }
 }

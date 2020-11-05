@@ -14,12 +14,23 @@ public class BulletController : MonoBehaviour
         lineRenderer = gameObject.AddComponent<LineRenderer>();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
 
         DebugForward();
         Destroy(gameObject, bulletLife);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            Debug.Log(gameObject.ToString() + " Hit Wall");
+            Debug.Log(gameObject.ToString());
+
+            Destroy(gameObject);
+        }
     }
 
     private void DebugForward()
