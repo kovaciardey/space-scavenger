@@ -45,6 +45,20 @@ public class PlayerController : MonoBehaviour
         DebugForward();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
+        }
+
+        if (other.gameObject.tag == "PickUp")
+        {
+            GetComponent<HealthController>().ApplyHealth(other.gameObject.GetComponent<PickUpController>().GetLifeAdded());
+            Destroy(other.gameObject);
+        }
+    }
+
     private void MoveCharacter()
     {
         Vector3 rightMovement = sideVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricRight");

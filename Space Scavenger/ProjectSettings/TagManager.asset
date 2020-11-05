@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BulletPrefab
   - Wall
+  - Monster
+  - PickUp
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Rotator : MonoBehaviour
+{
+    public bool monster;
+    public bool pickUp;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(monster)
+        {
+            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+        }
+        
+        if(pickUp)
+        {
+            transform.Rotate(new Vector3(0, 45, 30) * Time.deltaTime);
+        }
+    }
+}
