@@ -24,13 +24,12 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Monster")
         {
-            Debug.Log(gameObject.ToString() + " Hit Wall");
-            Debug.Log(gameObject.ToString());
-
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
+
+        Destroy(gameObject);
     }
 
     private void DebugForward()

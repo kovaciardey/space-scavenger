@@ -45,6 +45,16 @@ public class PlayerController : MonoBehaviour
         DebugForward();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
+        }
+
+
+    }
+
     private void MoveCharacter()
     {
         Vector3 rightMovement = sideVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricRight");
