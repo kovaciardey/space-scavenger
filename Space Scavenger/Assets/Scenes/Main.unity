@@ -621,10 +621,11 @@ GameObject:
   - component: {fileID: 1441208915}
   - component: {fileID: 1441208914}
   - component: {fileID: 1441208918}
+  - component: {fileID: 1441208919}
   - component: {fileID: 1441208913}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -714,7 +715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441208912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.99, y: 1, z: 10.15}
+  m_LocalPosition: {x: 10, y: 1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -732,7 +733,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb96122264b78849a2547d8c973e55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  walkSpeed: 10
+  lookSpeed: 10
+  debugCube: {fileID: 5389424351299723233, guid: 4c24a2f7737e2e74d91ddc8ce0b32e31,
+    type: 3}
+--- !u!114 &1441208919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441208912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a789f649a1fdd95449d422503d91c126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4198400844128810915, guid: 8585aa9174055494591983558ce39721, type: 3}
+  fireRate: 0.7
 --- !u!1 &1566083761
 GameObject:
   m_ObjectHideFlags: 0
