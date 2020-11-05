@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 10f;
     public float lookSpeed = 10f;
 
+    public GameObject debugCube;
+
     private CharacterController characterController;
     private Camera mainCamera;
 
@@ -31,14 +33,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            LookAtMouse();
-        }
+        LookAtMouse();
 
-        if (
-            Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")
-            )
+        if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
         {
             MoveCharacter();
         }
@@ -56,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         //TODO: Look At the speed when moving diagonally
  
-        transform.forward = direction;
+        //transform.forward = direction;
         characterController.Move(movement);
     }
 
@@ -66,12 +63,17 @@ public class PlayerController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         float hitdist = 0.0f;
+
         if (playerPlane.Raycast(ray, out hitdist))
         {
             Vector3 targetPoint = ray.GetPoint(hitdist);
-            targetPoint.y = 0;
 
-            transform.forward = targetPoint;
+            //Debug.Log(targetPoint);
+            GameObject debug = Instantiate(debugCube, targetPoint, Quaternion.identity);
+
+            transform.LookAt(debug.GetComponent<Transform>());
+
+            Destroy(debug);
         }
     }
 

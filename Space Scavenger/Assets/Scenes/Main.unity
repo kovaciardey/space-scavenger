@@ -735,6 +735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 10
   lookSpeed: 10
+  debugCube: {fileID: 5389424351299723233, guid: 4c24a2f7737e2e74d91ddc8ce0b32e31,
+    type: 3}
 --- !u!114 &1441208919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,12 +744,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441208912}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09091e0b1e30ff4aa803dce218e3d2e, type: 3}
+  m_Script: {fileID: 11500000, guid: a789f649a1fdd95449d422503d91c126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  bullet: {fileID: 4198400844128810915, guid: 8585aa9174055494591983558ce39721, type: 3}
+  fireRate: 0.7
 --- !u!1 &1566083761
 GameObject:
   m_ObjectHideFlags: 0
