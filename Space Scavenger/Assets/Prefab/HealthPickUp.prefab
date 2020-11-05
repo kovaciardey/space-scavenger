@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7961830952578664879}
   - component: {fileID: 7961830952578664878}
   - component: {fileID: 114622238367688516}
+  - component: {fileID: 114581492948258164}
   m_Layer: 0
   m_Name: HealthPickUp
   m_TagString: PickUp
@@ -107,3 +108,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: 0
   pickUp: 1
+--- !u!114 &114581492948258164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961830952578664785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9249179c05c9f854ab715a376ea3255a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -52,7 +52,11 @@ public class PlayerController : MonoBehaviour
             GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
         }
 
-
+        if (other.gameObject.tag == "PickUp")
+        {
+            GetComponent<HealthController>().ApplyHealth(other.gameObject.GetComponent<PickUpController>().GetLifeAdded());
+            Destroy(other.gameObject);
+        }
     }
 
     private void MoveCharacter()
