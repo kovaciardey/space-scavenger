@@ -781,6 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1441208912}
   lifeText: {fileID: 654805072}
+  ammoText: {fileID: 1170082926}
 --- !u!1 &1314359575
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +989,7 @@ GameObject:
   - component: {fileID: 1441208918}
   - component: {fileID: 1441208919}
   - component: {fileID: 1441208920}
+  - component: {fileID: 1441208921}
   - component: {fileID: 1441208913}
   m_Layer: 0
   m_Name: Player
@@ -1130,6 +1132,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &1441208921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441208912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91c0b448bd6ac4459d9f40973acd376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAmmo: 100
 --- !u!1 &1444715393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1296,7 @@ GameObject:
   - component: {fileID: 1614261934}
   - component: {fileID: 1614261935}
   m_Layer: 0
-  m_Name: HealthPickUpSpawner
+  m_Name: PickUpSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,11 +1328,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed570d9d3bae0c468a8331924281718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 8498400009254453863, guid: 3e6c686c93b3682439d38810f001da43, type: 3}
-  pickUpPositions:
+  healthPickUp: {fileID: 8498400009254453863, guid: 3e6c686c93b3682439d38810f001da43,
+    type: 3}
+  ammoPickUp: {fileID: 7499239819426581347, guid: c49ee36e710644548b302b0012ad3703,
+    type: 3}
+  healthPickUpPositions:
   - {x: 0, y: 1, z: 15}
   - {x: 10, y: 1, z: 20}
   - {x: 20, y: 1, z: 15}
+  ammoPickUpPositions:
+  - {x: 5, y: 1, z: 15}
+  - {x: 15, y: 1, z: 15}
 --- !u!1 &1668512432
 GameObject:
   m_ObjectHideFlags: 0
