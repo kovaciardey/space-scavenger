@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed570d9d3bae0c468a8331924281718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 7961830952578664785, guid: 36116c761171a944f9705789f519c8f2, type: 3}
+  pickUp: {fileID: 2956957424446592119, guid: 3e6c686c93b3682439d38810f001da43, type: 3}
   pickUpPositions:
   - {x: 0, y: 1, z: 15}
   - {x: 10, y: 1, z: 20}
