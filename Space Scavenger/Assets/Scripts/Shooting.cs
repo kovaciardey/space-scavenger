@@ -33,6 +33,8 @@ public class Shooting : MonoBehaviour
             GameObject instantiatedBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
             instantiatedBullet.transform.forward = transform.forward;
 
+            gameObject.GetComponent<AmmoController>().SubtractAmmo();
+
             //Physics.IgnoreCollision(instantiatedBullet.GetComponent<Collider>(), GetComponent<Collider>());
 
             yield return new WaitForSeconds(fireRate);
