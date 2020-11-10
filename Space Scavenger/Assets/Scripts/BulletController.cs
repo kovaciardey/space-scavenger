@@ -27,9 +27,16 @@ public class BulletController : MonoBehaviour
         if (other.gameObject.tag == "Monster")
         {
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
+    }
 
-        Destroy(gameObject);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Boundary")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void DebugForward()

@@ -47,14 +47,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.ToString());
+
         if (other.gameObject.tag == "Monster")
         {
             GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
         }
 
-        if (other.gameObject.tag == "PickUp")
+        if (other.gameObject.tag == "HealthPickUp")
         {
             GetComponent<HealthController>().ApplyHealth(other.gameObject.GetComponent<PickUpController>().GetLifeAdded());
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "AmmoPickUp")
+        {
+            GetComponent<AmmoController>().AddAmmo(other.gameObject.GetComponent<AmmoPickUpController>().GetAmmoAdded());
             Destroy(other.gameObject);
         }
     }
@@ -70,9 +78,13 @@ public class PlayerController : MonoBehaviour
         //TODO: Look At the speed when moving diagonally
 
         //TODO: don't allow movement while shooting
- 
+
         //transform.forward = direction;
         characterController.Move(movement);
+
+        //gameObject.transform.Translate(movement + direction);
+
+        //GetComponent<Rigidbody>().position = transform.position + movement;
     }
 
     private void LookAtMouse()
@@ -84,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
         if (playerPlane.Raycast(ray, out hitdist))
         {
+            // HACK
+
             Vector3 targetPoint = ray.GetPoint(hitdist);
 
             //Debug.Log(targetPoint);

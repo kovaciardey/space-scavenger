@@ -7,8 +7,10 @@ TagManager:
   - BulletPrefab
   - Wall
   - Monster
-  - PickUp
+  - HealthPickUp
   - AmmoPickUp
+  - PickUp
+  - Boundary
   layers:
   - Default
   - TransparentFX
