@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour
 {
-    public float lifeAdded = 20.0f;
-
-    void Start()
-    {
-        //Debug.Log(gameObject.ToString() + " " + damageDealt.ToString("0.00"));
-    }
+    public float lifeAdded = 20.0f; // life added by the pickup
 
     public float GetLifeAdded()
     {

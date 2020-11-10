@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    public float maxHealth = 100.0f;
+    public float maxHealth = 100.0f; // player health value
 
     public float GetMaxHealthValue()
     {
         return maxHealth;
     }
 
+    // add health
     public void ApplyHealth(float amount)
     {
         maxHealth += amount;
@@ -18,6 +19,7 @@ public class HealthController : MonoBehaviour
         Debug.Log(maxHealth);
     }
 
+    // remove health
     public void ApplyDamage(float amount)
     {
         if (maxHealth > 0)

@@ -16,6 +16,7 @@ public class BulletController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        // move the bullet forward 
         transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
 
         DebugForward();
@@ -24,12 +25,21 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // destroy if hit monster
         if (other.gameObject.tag == "Monster")
         {
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
+    }
 
-        Destroy(gameObject);
+    private void OnTriggerExit(Collider other)
+    {
+        // destroy the bullet if out of bounds
+        if (other.gameObject.tag == "Boundary")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void DebugForward()

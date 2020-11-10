@@ -16,11 +16,13 @@ public class GameController : MonoBehaviour
         ShowAmmoText();
     }
 
+    // show life
     private void ShowLifeText()
     {
         lifeText.text = "Health: " + player.GetComponent<HealthController>().GetMaxHealthValue().ToString("0.00");
     }
 
+    // show ammo
     private void ShowAmmoText()
     {
         ammoText.text = "Ammo: " + player.GetComponent<AmmoController>().GetMaxAmmo().ToString("0");
