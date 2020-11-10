@@ -28,6 +28,18 @@ public class BulletController : MonoBehaviour
         // destroy if hit monster
         if (other.gameObject.tag == "Monster")
         {
+            other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
+
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.tag == "Crate")
+        {
+            Debug.Log("HERE");
+
+            other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
+
             Destroy(other.gameObject);
             Destroy(gameObject);
         }

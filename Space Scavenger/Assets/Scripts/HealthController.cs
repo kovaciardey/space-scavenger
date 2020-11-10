@@ -16,7 +16,7 @@ public class HealthController : MonoBehaviour
     {
         maxHealth += amount;
 
-        Debug.Log(maxHealth);
+        //Debug.Log(maxHealth);
     }
 
     // remove health
@@ -32,6 +32,6 @@ public class HealthController : MonoBehaviour
             maxHealth = 0;
         }
 
-        Debug.Log(maxHealth);
+        //Debug.Log(maxHealth);
     }
 }
