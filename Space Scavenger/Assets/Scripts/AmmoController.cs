@@ -15,14 +15,14 @@ public class AmmoController : MonoBehaviour
             maxAmmo = 0;
         }
 
-        Debug.Log(maxAmmo);
+        //Debug.Log(maxAmmo);
     }
 
     public void AddAmmo(int amount) // increase the ammo count
     {
         maxAmmo += amount;
 
-        Debug.Log(maxAmmo);
+        //Debug.Log(maxAmmo);
     }
 
     public int GetMaxAmmo()

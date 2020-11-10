@@ -11,6 +11,7 @@ TagManager:
   - AmmoPickUp
   - PickUp
   - Boundary
+  - Crate
   layers:
   - Default
   - TransparentFX

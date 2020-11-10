@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.ToString());
+        //Debug.Log(other.gameObject.ToString());
 
         if (other.gameObject.tag == "Monster")
         {
