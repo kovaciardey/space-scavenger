@@ -18,7 +18,7 @@ public class SpawnPickUpOnKill : MonoBehaviour
 
         if (randomValue <= pickUpSpawnChance)
         {
-            int randomPickUp = Random.Range(0, possiblePickUps.Length - 1);
+            int randomPickUp = Random.Range(0, possiblePickUps.Length);
 
             Instantiate(possiblePickUps[randomPickUp], gameObject.transform.position, Quaternion.identity);
         }
