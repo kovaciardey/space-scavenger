@@ -17,6 +17,7 @@ public class PickUpSpawner : MonoBehaviour
 
     private void SpawnPickUps()
     {
+        // spawn health and ammo pickups respectively at hard-coded locations
         foreach (Vector3 position in healthPickUpPositions)
         {
             Instantiate(healthPickUp, position, Quaternion.identity);

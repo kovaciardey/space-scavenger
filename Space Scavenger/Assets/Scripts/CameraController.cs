@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        // simple follow camera
         transform.position = player.transform.position;
     }
 }

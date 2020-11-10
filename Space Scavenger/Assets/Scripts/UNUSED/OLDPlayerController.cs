@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+/**
+ * 
+ * THIS SCRIPT IS NOT USED IN THE GAME AND HSOULD BE IGNORED
+ * 
+ * I AM USING IT FOR REFERENCE PURPOSES
+ * 
+ */
+
+public class OLDPlayerController : MonoBehaviour
 {
     public float walkSpeed = 10f;
     public float lookSpeed = 10f;
@@ -20,22 +28,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         lineRenderer = gameObject.AddComponent<LineRenderer>();
 
-        // get the camera object
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-        // normalize the camera forward
+        // take the forward vector of the camera and normalize it for up direction
         upVector = mainCamera.transform.forward.normalized;
         upVector.y = 0;
 
-        // rotate the forward 90 degrees for sideways movement
+        // rotate the up vector 90 degrees to the right for the sideways direction
         sideVector = Quaternion.Euler(0, 90, 0) * upVector;
     }
 
     void Update()
     {
         LookAtMouse();
+
+        // Nu tine cont de faptul ca se apasa pe click atunci cand canFire = false
 
         if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
         {
@@ -69,28 +77,24 @@ public class PlayerController : MonoBehaviour
 
     private void MoveCharacter()
     {
-        // calculate up and right movement vectors
         Vector3 rightMovement = sideVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricRight");
         Vector3 upMovement = upVector * walkSpeed * Time.deltaTime * Input.GetAxis("IsometricUp");
 
-        // create the movement vector
         Vector3 movement = rightMovement + upMovement;
+        Vector3 direction = movement.normalized;
 
-        // apply the movement
+        //TODO: Look At the speed when moving diagonally
+
+        //TODO: don't allow movement while shooting
+
+        //transform.forward = direction;
         characterController.Move(movement);
+
+        //gameObject.transform.Translate(movement + direction);
+
+        //GetComponent<Rigidbody>().position = transform.position + movement;
     }
 
-    /**
-     * The function to move rotate the player 
-     * 
-     * Generates a plane from the players position;
-     * Casts a ray from the camera, 
-     * Spawns a Cube at the location of the ray hit
-     * Rotates the player to look at the spawned cube
-     * Deletes the cube
-     * 
-     * It is a very hacky way to do the rotation, but at the time it was the fastest way of doing it
-     */
     private void LookAtMouse()
     {
         Plane playerPlane = new Plane(Vector3.up, transform.position);
@@ -99,9 +103,12 @@ public class PlayerController : MonoBehaviour
         float hitdist = 0.0f;
 
         if (playerPlane.Raycast(ray, out hitdist))
-        { 
+        {
+            // HACK
+
             Vector3 targetPoint = ray.GetPoint(hitdist);
 
+            //Debug.Log(targetPoint);
             GameObject debug = Instantiate(debugCube, targetPoint, Quaternion.identity);
 
             transform.LookAt(debug.GetComponent<Transform>());

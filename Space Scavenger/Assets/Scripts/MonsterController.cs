@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    private float damageDealt;
+    private float damageDealt; // damage dealt to player
 
     void Start()
     {
+        // randomly generate the damage value
         damageDealt = Random.Range(10.0f, 20.0f);
-        //Debug.Log(gameObject.ToString() + " " + damageDealt.ToString("0.00"));
     }
 
     public float GetDamage()

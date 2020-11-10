@@ -15,6 +15,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private void SpawnMonsters()
     {
+        // spwan monsters at hard-coded positions
         foreach (Vector3 position in monsterPositions)
         {
             Instantiate(monster, position, Quaternion.identity);

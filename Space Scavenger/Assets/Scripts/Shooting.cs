@@ -35,8 +35,6 @@ public class Shooting : MonoBehaviour
 
             gameObject.GetComponent<AmmoController>().SubtractAmmo();
 
-            //Physics.IgnoreCollision(instantiatedBullet.GetComponent<Collider>(), GetComponent<Collider>());
-
             yield return new WaitForSeconds(fireRate);
             canFire = true;
         }
