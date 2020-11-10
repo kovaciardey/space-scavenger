@@ -7,6 +7,8 @@ public class Rotator : MonoBehaviour
     public bool monster;
     public bool pickUp;
 
+    public float bobbingThreshold = 0.5f;
+
     // Update is called once per frame
     void Update()
     {
@@ -17,7 +19,8 @@ public class Rotator : MonoBehaviour
         
         if(pickUp)
         {
-            transform.Rotate(new Vector3(0, 45, 30) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
         }
     }
 }
+
