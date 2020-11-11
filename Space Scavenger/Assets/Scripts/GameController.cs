@@ -9,11 +9,13 @@ public class GameController : MonoBehaviour
 
     public Text lifeText;
     public Text ammoText;
+    public Text scrapText;
 
     void Update()
     {
         ShowLifeText();
         ShowAmmoText();
+        ShowScrapText();
     }
 
     // show life
@@ -26,5 +28,10 @@ public class GameController : MonoBehaviour
     private void ShowAmmoText()
     {
         ammoText.text = "Ammo: " + player.GetComponent<AmmoController>().GetMaxAmmo().ToString("0");
+    }
+
+    private void ShowScrapText()
+    {
+        scrapText.text = "Scrap: " + player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
     }
 }

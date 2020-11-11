@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 8378457397566485907}
   - component: {fileID: 114335094743898220}
   - component: {fileID: 114915287294833160}
+  - component: {fileID: 114852767338733260}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -281,6 +282,18 @@ MonoBehaviour:
   bullet: {fileID: 842994205893341611, guid: 8585aa9174055494591983558ce39721, type: 3}
   fireRate: 0.9
   usesAmmo: 0
+--- !u!114 &114852767338733260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378457397566485906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406646e4f55fa40468961bf25e6a9fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8378457397671641430
 GameObject:
   m_ObjectHideFlags: 0

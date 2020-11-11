@@ -8,17 +8,31 @@ public class MonsterSpawner : MonoBehaviour
 
     public Vector3[] monsterPositions;
 
+    private List<GameObject> monsters;
+
     void Start()
-    { 
+    {
+        monsters = new List<GameObject>();
+
         SpawnMonsters();
     }
 
-    private void SpawnMonsters()
+    private void Update()
+    {   
+        if (Input.GetButtonDown("Jump"))
+        {
+            SpawnMonsters();
+        }
+    }
+
+    public void SpawnMonsters()
     {
-        // spwan monsters at hard-coded positions
+        monsters.Clear();
+
+        // spawn monsters at hard-coded positions
         foreach (Vector3 position in monsterPositions)
         {
-            Instantiate(monster, position, Quaternion.identity);
+            monsters.Add(Instantiate(monster, position, Quaternion.identity));
         }
     }
 }

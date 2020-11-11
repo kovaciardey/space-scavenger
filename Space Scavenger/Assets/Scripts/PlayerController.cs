@@ -54,17 +54,20 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(other.gameObject.ToString());
 
+        // apply damage when colliding with monster
         if (other.gameObject.tag == "Monster")
         {
             GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
         }
 
+        // add health when colliding with a health pickUp
         if (other.gameObject.tag == "HealthPickUp")
         {
             GetComponent<HealthController>().ApplyHealth(other.gameObject.GetComponent<PickUpController>().GetLifeAdded());
             Destroy(other.gameObject);
         }
 
+        // add ammo when colliding with ammo pickup
         if (other.gameObject.tag == "AmmoPickUp")
         {
             GetComponent<AmmoController>().AddAmmo(other.gameObject.GetComponent<AmmoPickUpController>().GetAmmoAdded());

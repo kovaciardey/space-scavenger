@@ -25,6 +25,7 @@ public class Shooting : MonoBehaviour
             canFire = false;
 
             GameObject instantiatedBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+            instantiatedBullet.GetComponent<BulletController>().SetOwner(gameObject);
             instantiatedBullet.transform.forward = transform.forward;
 
             if (usesAmmo)

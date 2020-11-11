@@ -9,6 +9,8 @@ public class BulletController : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
+    private GameObject owner = null;
+
     public void Start()
     {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
@@ -23,26 +25,32 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, bulletLife);
     }
 
+    public void SetOwner(GameObject bulletOwner)
+    {
+        owner = bulletOwner;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // destroy if hit monster
         if (other.gameObject.tag == "Monster")
         {
-            other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
+            bool isPLayerOwner = owner.tag == "Player";
 
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<MonsterController>().DestroyMonster(isPLayerOwner);
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "Crate")
-        {
-            Debug.Log("HERE");
+        // the crate collision is disabled at the moment
+        //if (other.gameObject.tag == "Crate")
+        //{
+        //    Debug.Log("HERE");
 
-            other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
+        //    other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
 
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
+        //    Destroy(other.gameObject);
+        //    Destroy(gameObject);
+        //}
     }
 
     private void OnTriggerExit(Collider other)
