@@ -21,7 +21,11 @@ public class ShootOnSight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) <= minDistance && GetComponent<Shooting>().GetCanFire())
+        if (
+            Vector3.Distance(transform.position, target.transform.position) <= minDistance &&
+            GetComponent<Shooting>().GetCanFire() &&
+            target.GetComponent<PlayerController>().IsAlive
+            )
         {
             Shoot();
         }

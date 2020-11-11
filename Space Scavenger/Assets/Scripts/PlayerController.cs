@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 10f;
     public float lookSpeed = 10f;
 
+    public bool IsAlive { get; set; }
+
     public GameObject debugCube;
 
     private CharacterController characterController;
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         lineRenderer = gameObject.AddComponent<LineRenderer>();
 
+        IsAlive = true;
+
         // get the camera object
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
@@ -35,16 +39,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        LookAtMouse();
-
-        if (Input.GetButton("Fire1") && GetComponent<Shooting>().GetCanFire())
+        if (IsAlive)
         {
-            GetComponent<Shooting>().Shoot();
-        }
+            LookAtMouse();
 
-        if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
-        {
-            MoveCharacter();
+            if (Input.GetButton("Fire1") && GetComponent<Shooting>().GetCanFire())
+            {
+                GetComponent<Shooting>().Shoot();
+            }
+
+            if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
+            {
+                MoveCharacter();
+            }
         }
 
         DebugForward();
@@ -52,12 +59,36 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.ToString());
-
-        // apply damage when colliding with monster
+        // apply monster damage when colliding with monster
         if (other.gameObject.tag == "Monster")
         {
             GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
+
+            if (GetComponent<HealthController>().GetMaxHealthValue() == 0)
+            {
+                IsAlive = false;
+            }
+        }
+
+        // apply bullet damage if player is hit by bullet shot by monster
+
+        // there is a bug in this: the bullet triggers this event twice and the damage is added 2 times in the same frame to the player
+        // will reduce the bullet damage in the editor for the prototype purposes
+        // and I will debug this later
+
+        if (other.gameObject.tag == "Bullet")
+        {
+            if (other.gameObject.GetComponent<BulletController>().GetOwner().gameObject.tag == "Monster")
+            {
+                GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<BulletController>().GetBulletDamage());
+
+                Destroy(other.gameObject); // this is not working to resolve the bug
+
+                if (GetComponent<HealthController>().GetMaxHealthValue() == 0)
+                {
+                    IsAlive = false;
+                }
+            }
         }
 
         // add health when colliding with a health pickUp

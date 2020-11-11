@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    public float maxHealth = 100.0f; // player health value
+    // this Component will be updated to clamp the life to a maximum value and to also have a current life variable
+
+    public float maxHealth = 100.0f; // player health value - will have a different value on the monster
+
+    public void SetMaxHealth(float amount)
+    {
+        maxHealth = amount;
+    }
 
     public float GetMaxHealthValue()
     {
@@ -32,6 +39,6 @@ public class HealthController : MonoBehaviour
             maxHealth = 0;
         }
 
-        //Debug.Log(maxHealth);
+        Debug.Log(maxHealth);
     }
 }

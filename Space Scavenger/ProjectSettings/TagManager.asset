@@ -13,6 +13,7 @@ TagManager:
   - Boundary
   - Crate
   - Reactor
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,13 @@ public class GameController : MonoBehaviour
             resetText.gameObject.SetActive(true);
         }
 
+        if (!player.GetComponent<PlayerController>().IsAlive)
+        {
+            ShowWinLoseMessage("Game Over!");
+
+            resetText.gameObject.SetActive(true);
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             ResetScene();
@@ -84,8 +91,10 @@ public class GameController : MonoBehaviour
     {
         winLoseText.text = "";
 
-        reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
+        player.GetComponent<PlayerController>().IsAlive = true;
+        player.GetComponent<HealthController>().SetMaxHealth(100.0f);
 
+        reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
         reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
 
         resetText.gameObject.SetActive(false);

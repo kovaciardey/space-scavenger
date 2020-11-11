@@ -7,6 +7,8 @@ public class BulletController : MonoBehaviour
     public float bulletLife = 2.0f;
     public float bulletSpeed = 100f;
 
+    public float bulletDamage = 20.0f;
+
     private LineRenderer lineRenderer;
 
     private GameObject owner = null;
@@ -25,19 +27,35 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, bulletLife);
     }
 
+    public GameObject GetOwner()
+    {
+        return owner;
+    }
+
     public void SetOwner(GameObject bulletOwner)
     {
         owner = bulletOwner;
     }
 
+    public float GetBulletDamage()
+    {
+        return bulletDamage;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        // destroy if hit monster
+        // apply damage to the monster health
         if (other.gameObject.tag == "Monster")
         {
-            bool isPLayerOwner = owner.tag == "Player";
+            bool isPLayerOwner = (owner.tag == "Player");
 
-            other.gameObject.GetComponent<MonsterController>().DestroyMonster(isPLayerOwner);
+            other.gameObject.GetComponent<HealthController>().ApplyDamage(gameObject.GetComponent<BulletController>().GetBulletDamage());
+
+            if (other.gameObject.GetComponent<HealthController>().GetMaxHealthValue() == 0)
+            {
+                other.gameObject.GetComponent<MonsterController>().DestroyMonster(isPLayerOwner);
+            }
+            
             Destroy(gameObject);
         }
 
