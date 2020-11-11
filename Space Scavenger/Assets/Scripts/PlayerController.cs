@@ -73,6 +73,19 @@ public class PlayerController : MonoBehaviour
             GetComponent<AmmoController>().AddAmmo(other.gameObject.GetComponent<AmmoPickUpController>().GetAmmoAdded());
             Destroy(other.gameObject);
         }
+
+        // add the final scrap when "picking up" the ship reactor and disable any other interactions with it
+        if (other.gameObject.tag == "Reactor")
+        {
+            if (!other.gameObject.GetComponent<ReactorController>().HasBeenClaimed)
+            {
+                other.gameObject.GetComponent<ReactorController>().HasBeenClaimed = true;
+
+                other.gameObject.GetComponentInChildren<Renderer>().material.color = Color.green;
+
+                gameObject.GetComponent<ScrapController>().AddScrap(other.GetComponent<ReactorController>().ScrapAmount);
+            }
+        }
     }
 
     private void MoveCharacter()

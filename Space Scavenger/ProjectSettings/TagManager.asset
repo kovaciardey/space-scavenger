@@ -12,6 +12,7 @@ TagManager:
   - PickUp
   - Boundary
   - Crate
+  - Reactor
   layers:
   - Default
   - TransparentFX
