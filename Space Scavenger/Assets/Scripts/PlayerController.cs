@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
     {
         LookAtMouse();
 
+        if (Input.GetButton("Fire1") && GetComponent<Shooting>().GetCanFire())
+        {
+            GetComponent<Shooting>().Shoot();
+        }
+
         if ((Input.GetButton("IsometricRight") || Input.GetButton("IsometricUp")) && !Input.GetButton("Fire1"))
         {
             MoveCharacter();

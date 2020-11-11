@@ -7,6 +7,8 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
     public float fireRate = 0.4f;
 
+    public bool usesAmmo = true;
+
     private bool canFire;
 
     void Start()
@@ -14,15 +16,7 @@ public class Shooting : MonoBehaviour
         canFire = true;    
     }
 
-    void Update()
-    {
-        if (Input.GetButton("Fire1") && canFire)
-        {
-            Shoot();
-        }
-    }
-
-    void Shoot()
+    public void Shoot()
     {
         StartCoroutine(FireRate());
 
@@ -33,10 +27,18 @@ public class Shooting : MonoBehaviour
             GameObject instantiatedBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
             instantiatedBullet.transform.forward = transform.forward;
 
-            gameObject.GetComponent<AmmoController>().SubtractAmmo();
+            if (usesAmmo)
+            {
+                gameObject.GetComponent<AmmoController>().SubtractAmmo();
+            }
 
             yield return new WaitForSeconds(fireRate);
             canFire = true;
         }
+    }
+
+    public bool GetCanFire()
+    {
+        return canFire;
     }
 }
