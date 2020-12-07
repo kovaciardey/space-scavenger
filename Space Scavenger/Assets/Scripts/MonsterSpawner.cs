@@ -17,22 +17,27 @@ public class MonsterSpawner : MonoBehaviour
         SpawnMonsters();
     }
 
-    private void Update()
-    {   
-        if (Input.GetButtonDown("Jump"))
-        {
-            SpawnMonsters();
-        }
-    }
-
     public void SpawnMonsters()
     {
+        ClearMonsters();
         monsters.Clear();
 
         // spawn monsters at hard-coded positions
         foreach (Vector3 position in monsterPositions)
         {
             monsters.Add(Instantiate(monster, position, Quaternion.identity));
+        }
+    }
+
+    // Destroys any existing monsters the spawner created so as to not get any duplicate game objects
+    private void ClearMonsters()
+    {
+        foreach (GameObject monster in monsters)
+        {
+            if (monster != null)
+            {
+                Destroy(monster);
+            }
         }
     }
 }

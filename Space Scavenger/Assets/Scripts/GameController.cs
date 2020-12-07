@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public GameObject player;
+    public GameObject monsterSpawner;
+    public GameObject pickUpSpawner;
 
     public Text lifeText;
     public Text ammoText;
@@ -96,6 +98,9 @@ public class GameController : MonoBehaviour
 
         reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
         reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
+
+        monsterSpawner.GetComponent<MonsterSpawner>().SpawnMonsters();
+        pickUpSpawner.GetComponent<PickUpSpawner>().SpawnPickUps();
 
         resetText.gameObject.SetActive(false);
     }

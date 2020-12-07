@@ -10,22 +10,53 @@ public class PickUpSpawner : MonoBehaviour
     public Vector3[] healthPickUpPositions;
     public Vector3[] ammoPickUpPositions;
 
+    private List<GameObject> healthPickUps;
+    private List<GameObject> ammoPickUps;
+
     void Start()
     {
+        healthPickUps = new List<GameObject>();
+        ammoPickUps = new List<GameObject>();
+
         SpawnPickUps();
     }
 
-    private void SpawnPickUps()
+    public void SpawnPickUps()
     {
+        ClearPickUps();
+
+        healthPickUps.Clear();
+        ammoPickUps.Clear();
+
         // spawn health and ammo pickups respectively at hard-coded locations
         foreach (Vector3 position in healthPickUpPositions)
         {
-            Instantiate(healthPickUp, position, Quaternion.identity);
+            healthPickUps.Add(Instantiate(healthPickUp, position, Quaternion.identity));
         }
 
         foreach (Vector3 position in ammoPickUpPositions)
         {
-            Instantiate(ammoPickUp, position, Quaternion.identity);
+            ammoPickUps.Add(Instantiate(ammoPickUp, position, Quaternion.identity));
+        }
+    }
+
+    // Destroys any existing pickups the spawner created so as to not get any duplicate game objects
+    private void ClearPickUps()
+    {
+        foreach (GameObject pickUp in healthPickUps)
+        {
+            if (pickUp != null)
+            {
+                Destroy(pickUp);
+            }
+        }
+
+        foreach (GameObject pickUp in ammoPickUps)
+        {
+            if (pickUp != null)
+            {
+                Destroy(pickUp);
+            }
         }
     }
 }
