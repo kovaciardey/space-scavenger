@@ -11,7 +11,7 @@ public class ChangePlayerColour : MonoBehaviour
 
     private void Start()
     {
-        playerHealth = GetComponent<HealthController>().GetMaxHealthValue();
+        playerHealth = GetComponent<HealthController>().GetCurrentHealth();
 
         Debug.Log(Mathf.InverseLerp(0.0f, 255.0f, playerHealth));
     }

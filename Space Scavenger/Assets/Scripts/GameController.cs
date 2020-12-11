@@ -15,11 +15,15 @@ public class GameController : MonoBehaviour
     public Text winLoseText;
     public Text resetText;
 
+    public HealthBar healthBar;
+
     public GameObject reactorPrefab;
     public Vector3 reactorPosition = new Vector3(50, 0, 60);
 
     private GameObject reactor;
     private Color reactorInitialColor;
+
+    private HealthController healthController;
 
     private void Start()
     {
@@ -30,6 +34,10 @@ public class GameController : MonoBehaviour
         resetText.gameObject.SetActive(false);
 
         reactorInitialColor = reactor.GetComponentInChildren<Renderer>().material.color;
+
+        healthController = player.GetComponent<HealthController>();
+
+        healthBar.SetMaxHealth(healthController.GetMaxHealth());
     }
 
     void Update()
@@ -61,7 +69,10 @@ public class GameController : MonoBehaviour
     // show life
     private void ShowLifeText()
     {
-        lifeText.text = "Health: " + player.GetComponent<HealthController>().GetMaxHealthValue().ToString("0.00");
+        float healthValue = healthController.GetCurrentHealth();
+
+        lifeText.text = "Health: " + healthValue.ToString("0.00");
+        healthBar.SetHealth(healthValue);
     }
 
     // show ammo
@@ -94,7 +105,7 @@ public class GameController : MonoBehaviour
         winLoseText.text = "";
 
         player.GetComponent<PlayerController>().IsAlive = true;
-        player.GetComponent<HealthController>().SetMaxHealth(100.0f);
+        player.GetComponent<HealthController>().ResetHealth();
 
         reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
         reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;

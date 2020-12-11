@@ -51,7 +51,7 @@ public class BulletController : MonoBehaviour
 
             other.gameObject.GetComponent<HealthController>().ApplyDamage(gameObject.GetComponent<BulletController>().GetBulletDamage());
 
-            if (other.gameObject.GetComponent<HealthController>().GetMaxHealthValue() == 0)
+            if (other.gameObject.GetComponent<HealthController>().GetCurrentHealth() == 0)
             {
                 other.gameObject.GetComponent<MonsterController>().DestroyMonster(isPLayerOwner);
             }

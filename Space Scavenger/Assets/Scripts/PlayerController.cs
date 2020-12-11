@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<MonsterController>().GetDamage());
 
-            if (GetComponent<HealthController>().GetMaxHealthValue() == 0)
+            if (GetComponent<HealthController>().GetCurrentHealth() == 0)
             {
                 IsAlive = false;
             }
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
                 Destroy(other.gameObject); // this is not working to resolve the bug
 
-                if (GetComponent<HealthController>().GetMaxHealthValue() == 0)
+                if (GetComponent<HealthController>().GetCurrentHealth() == 0)
                 {
                     IsAlive = false;
                 }
