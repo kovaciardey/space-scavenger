@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             if (other.gameObject.GetComponent<BulletController>().GetOwner().gameObject.tag == "Monster")
             {
-                GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<BulletController>().GetBulletDamage());
+                ApplyDamage(other);
 
                 Destroy(other.gameObject); // this is not working to resolve the bug
 
@@ -159,6 +159,19 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(debug.GetComponent<Transform>());
 
             Destroy(debug);
+        }
+    }
+
+    // calculates and applies the appropriate damage top the player
+    private void ApplyDamage(Collider other)
+    {
+        if (GetComponent<ShieldController>().GetCurrentShields() > 0)
+        {
+            GetComponent<ShieldController>().ApplyShieldDamage();
+        } 
+        else
+        {
+            GetComponent<HealthController>().ApplyDamage(other.gameObject.GetComponent<BulletController>().GetBulletDamage());
         }
     }
 
