@@ -7,15 +7,38 @@ public class LevelGenerator : MonoBehaviour
     public int minLevelLength = 2;
     public int maxLevelLength = 6;
 
-    public Dictionary<string, string> dict = new Dictionary<string, string>();
+    public GameObject startingRoom;
+    public GameObject corridor;
+    public GameObject roomA;
+    public GameObject roomB;
+    public GameObject finish;
+
+    private string levelCode;
 
     private string[] selectableRooms = new string[2] { "Ra", "Rb" };
 
+    private Dictionary<string, GameObject> roomPrefabMap;
+
     public void GenerateLevel()
+    {
+        GenerateLevelString();
+
+        roomPrefabMap = new Dictionary<string, GameObject> {
+            { "S", startingRoom },
+            { "C", corridor },
+            { "Ra", roomA },
+            { "Rb", roomB },
+            { "F", finish },
+        };
+
+        ParseLevelString();
+    }
+
+    private void GenerateLevelString()
     {
         int iterations = Random.Range(minLevelLength, maxLevelLength);
 
-        string levelCode = "S-C-";
+        levelCode = "S-C-";
 
         for (int i = 0; i < iterations; i++)
         {
@@ -27,5 +50,15 @@ public class LevelGenerator : MonoBehaviour
         levelCode += "F";
 
         Debug.Log(levelCode);
+    }
+
+    private void ParseLevelString()
+    {
+        string[] roomsList = levelCode.Split('-');
+
+        foreach (string room in roomsList)
+        {
+            Debug.Log(room);
+        } 
     }
 }
