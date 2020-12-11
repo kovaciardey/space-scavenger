@@ -33,7 +33,14 @@ public class HealthController : MonoBehaviour
     // add health
     public void ApplyHealth(float amount)
     {
-        currentHealth += amount;
+        if ((currentHealth + amount) >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth += amount;
+        }
 
         //Debug.Log(maxHealth);
     }
@@ -41,17 +48,16 @@ public class HealthController : MonoBehaviour
     // remove health
     public void ApplyDamage(float amount)
     {
-        if (currentHealth > 0)
+        if ((currentHealth - amount) <= 0)
+        {
+            currentHealth = 0;
+        }
+        else
         {
             currentHealth -= amount;
         }
 
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-        }
-
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
     }
 
     public void ResetHealth()

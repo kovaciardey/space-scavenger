@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
         healthController = player.GetComponent<HealthController>();
 
         healthBar.SetMaxHealth(healthController.GetMaxHealth());
+
+        ShowLifeText();
     }
 
     void Update()
@@ -71,7 +73,7 @@ public class GameController : MonoBehaviour
     {
         float healthValue = healthController.GetCurrentHealth();
 
-        lifeText.text = "Health: " + healthValue.ToString("0.00");
+        lifeText.text = "Health: " + healthValue.ToString() + "/" + healthController.GetMaxHealth().ToString();
         healthBar.SetHealth(healthValue);
     }
 
