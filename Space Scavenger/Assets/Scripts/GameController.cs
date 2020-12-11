@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public GameObject pickUpSpawner;
 
     public Text lifeText;
+    public Text shieldsText;
     public Text ammoText;
     public Text scrapText;
     public Text winLoseText;
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
     private Color reactorInitialColor;
 
     private HealthController healthController;
+    private ShieldController shieldController;
 
     private void Start()
     {
@@ -36,15 +38,18 @@ public class GameController : MonoBehaviour
         reactorInitialColor = reactor.GetComponentInChildren<Renderer>().material.color;
 
         healthController = player.GetComponent<HealthController>();
+        shieldController = player.GetComponent<ShieldController>();
 
         healthBar.SetMaxHealth(healthController.GetMaxHealth());
 
         ShowLifeText();
+        ShowShieldsText();
     }
 
     void Update()
     {
         ShowLifeText();
+        ShowShieldsText();
         ShowAmmoText();
         ShowScrapText();
 
@@ -75,6 +80,11 @@ public class GameController : MonoBehaviour
 
         lifeText.text = "Health: " + healthValue.ToString() + "/" + healthController.GetMaxHealth().ToString();
         healthBar.SetHealth(healthValue);
+    }
+
+    private void ShowShieldsText()
+    {
+        shieldsText.text = "Shields: " + shieldController.GetCurrentShields().ToString() + "/" + shieldController.GetMaxShields().ToString();
     }
 
     // show ammo
@@ -108,6 +118,7 @@ public class GameController : MonoBehaviour
 
         player.GetComponent<PlayerController>().IsAlive = true;
         player.GetComponent<HealthController>().ResetHealth();
+        player.GetComponent<ShieldController>().ResetShields();
 
         reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
         reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
