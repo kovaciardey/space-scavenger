@@ -51,7 +51,7 @@ public class BulletController : MonoBehaviour
 
             other.gameObject.GetComponent<HealthController>().ApplyDamage(gameObject.GetComponent<BulletController>().GetBulletDamage());
 
-            if (other.gameObject.GetComponent<HealthController>().GetMaxHealthValue() == 0)
+            if (other.gameObject.GetComponent<HealthController>().GetCurrentHealth() == 0)
             {
                 other.gameObject.GetComponent<MonsterController>().DestroyMonster(isPLayerOwner);
             }
@@ -59,16 +59,16 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // the crate collision is disabled at the moment
-        //if (other.gameObject.tag == "Crate")
-        //{
-        //    Debug.Log("HERE");
+        // the crates will have some more functionality but at the moment they just act as barriers and will destroy bullets on contact
+        if (other.gameObject.tag == "Crate")
+        {
+            //Debug.Log("HERE");
 
-        //    other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
+            //other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
 
-        //    Destroy(other.gameObject);
-        //    Destroy(gameObject);
-        //}
+            //Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)

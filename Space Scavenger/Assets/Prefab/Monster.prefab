@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4128e819b2c25ff4a99560dfd4592993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 30
+  minDistance: 20
 --- !u!114 &114915287294833160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 842994205893341611, guid: 8585aa9174055494591983558ce39721, type: 3}
-  fireRate: 1.5
+  fireRate: 2
   usesAmmo: 0
 --- !u!114 &114852767338733260
 MonoBehaviour:
