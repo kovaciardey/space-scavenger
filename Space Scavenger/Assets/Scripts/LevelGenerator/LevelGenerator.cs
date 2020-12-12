@@ -13,11 +13,15 @@ public class LevelGenerator : MonoBehaviour
     public GameObject roomB;
     public GameObject finish;
 
+    public GameObject levelParent;
+
     private string levelCode;
 
     private string[] selectableRooms = new string[2] { "Ra", "Rb" };
 
     private Dictionary<string, GameObject> roomPrefabMap;
+
+    private List<GameObject> roomGameObjects = new List<GameObject>();
 
     public void GenerateLevel()
     {
@@ -56,9 +60,15 @@ public class LevelGenerator : MonoBehaviour
     {
         string[] roomsList = levelCode.Split('-');
 
+        Vector3 position = new Vector3(0, 0, 0);
+
         foreach (string room in roomsList)
         {
-            Debug.Log(room);
+            GameObject roomPrefab = Instantiate(roomPrefabMap[room], position, Quaternion.identity);
+
+            position = roomPrefab.GetComponent<Room>().GetConnectorB().transform.position;
+
+            roomPrefab.transform.parent = levelParent.transform;
         } 
     }
 }
