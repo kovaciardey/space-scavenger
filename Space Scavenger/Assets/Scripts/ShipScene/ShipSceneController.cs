@@ -14,10 +14,17 @@ public class ShipSceneController : MonoBehaviour
     public Text scrapAmountText;
     public Text levelText;
 
+    public ExperienceBar experienceBar;
+
+    private void Start()
+    {
+        experienceBar.SetMaxExp(maxExp);
+    }
+
     private void Update()
     {
         ShowScrapAmountText();
-        ShowLevelText();
+        UpdateLevelAndExperience();
     }
 
     public void AddScrap(int amount)
@@ -51,8 +58,10 @@ public class ShipSceneController : MonoBehaviour
         scrapAmountText.text = "Scrap: " + scrap;
     }
 
-    private void ShowLevelText()
+    private void UpdateLevelAndExperience()
     {
         levelText.text = level.ToString();
+
+        experienceBar.SetExp(exp);
     } 
 }
