@@ -16,9 +16,13 @@ public class ShipSceneController : MonoBehaviour
 
     public ExperienceBar experienceBar;
 
+    private Mission SelectedMission;
+
     private void Start()
     {
         experienceBar.SetMaxExp(maxExp);
+
+        SelectedMission = null;
     }
 
     private void Update()
@@ -53,9 +57,26 @@ public class ShipSceneController : MonoBehaviour
         }
     }
 
+    public void LaunchMission()
+    {
+        if (SelectedMission == null)
+        {
+            Debug.Log("No Selected Mission");
+        }
+        else
+        {
+            Debug.Log(SelectedMission.ToString());
+        }
+    }
+
+    public void SetSelectedMission(Mission mission)
+    {
+        SelectedMission = mission;
+    }
+
     private void ShowScrapAmountText()
     {
-        scrapAmountText.text = "Scrap: " + scrap;
+        scrapAmountText.text = scrap.ToString();
     }
 
     private void UpdateLevelAndExperience()

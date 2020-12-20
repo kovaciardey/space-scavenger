@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mission : MonoBehaviour
+public class Mission
 {
     public Vector2Int shortExpReward;
     public Vector2Int longExpReward;
@@ -18,6 +18,11 @@ public class Mission : MonoBehaviour
 
     private int MissionID { get; set; }
 
+    public Mission()
+    {
+
+    }
+
     public void GenerateMissionDetails(string missionType, int missionID)
     {
 
@@ -31,5 +36,10 @@ public class Mission : MonoBehaviour
         }
 
         return Random.Range(25, 45);
+    }
+
+    public override string ToString()
+    {
+        return "HERE IS MISSION";
     }
 }
