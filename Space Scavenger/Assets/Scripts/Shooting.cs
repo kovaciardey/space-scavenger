@@ -7,13 +7,24 @@ public class Shooting : MonoBehaviour
     public GameObject bullet;
     public float fireRate = 0.4f;
 
+    public int clipSize = 15;
+
     public bool usesAmmo = true;
+    public bool needsToReload = true;
 
     private bool canFire;
 
+    private int currentClip;
+
     void Start()
     {
-        canFire = true;    
+        canFire = true;
+        currentClip = clipSize;
+    }
+
+    void Update()
+    {
+        
     }
 
     public void Shoot()

@@ -282,7 +282,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 842994205893341611, guid: 8585aa9174055494591983558ce39721, type: 3}
   fireRate: 2
+  clipSize: 15
   usesAmmo: 0
+  needsToReload: 0
 --- !u!114 &114852767338733260
 MonoBehaviour:
   m_ObjectHideFlags: 0
