@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class MissionPanelController : MonoBehaviour, ISelectHandler
 {
+    public Text missionIdText;
+    public Text missionDifficultyText;
+
     public Text expText;
     public Text scrapText;
 

@@ -11,8 +11,8 @@ public class Mission
 
     private string LevelCode { get; }
 
-    private int ExpReward { get; }
-    private int ScrapReward { get; }
+    public int ExpReward { get; }
+    public int ScrapReward { get; }
 
     private string MissionType { get; }
 
@@ -20,7 +20,9 @@ public class Mission
 
     public Mission()
     {
+        MissionType = "Short";
 
+       ExpReward = GenerateExpReward();
     }
 
     public void GenerateMissionDetails(string missionType, int missionID)
