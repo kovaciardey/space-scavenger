@@ -535,6 +535,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112322965}
   m_CullTransparentMesh: 0
+--- !u!114 &144474841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3831204650100386734, guid: 25cb1e724adfc9246b08cdafcfdf18a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 420029098}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &186602088
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +958,7 @@ GameObject:
   - component: {fileID: 350985091}
   m_Layer: 0
   m_Name: ShipController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1336,7 +1348,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 450337194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 350985091}
+        m_MethodName: LaunchMission
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &450337194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3840,6 +3863,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700025974}
   m_CullTransparentMesh: 0
+--- !u!1 &1724283534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3831204649805233017, guid: 25cb1e724adfc9246b08cdafcfdf18a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 420029098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1724283536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724283534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 0.995283, b: 0.995283, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.5613208, b: 0.5613208, a: 1}
+    m_PressedColor: {r: 0.6698113, g: 0.45812565, b: 0.45812565, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 144474841}
 --- !u!1 &1735028004
 GameObject:
   m_ObjectHideFlags: 0
