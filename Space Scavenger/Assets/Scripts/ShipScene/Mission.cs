@@ -14,21 +14,21 @@ public class Mission
     public int ExpReward { get; }
     public int ScrapReward { get; }
 
-    private string MissionType { get; }
+    public string Difficulty { get; }
 
-    private int MissionID { get; set; }
+    public int ID { get; set; }
 
     public Mission(int id)
     {
-        this.MissionID = id;
+        this.ID = id;
 
-        MissionType = GenerateMissionType();
+        Difficulty = GenerateMissionDifficulty();
 
         ExpReward = GenerateExpReward();
         ScrapReward = GenerateScrapReward();
     }
 
-    private string GenerateMissionType()
+    private string GenerateMissionDifficulty()
     {
         if (Random.value >= 0.8)
         {
@@ -40,7 +40,7 @@ public class Mission
 
     private int GenerateScrapReward()
     {
-        if (this.MissionType == "Hard")
+        if (this.Difficulty == "Hard")
         {
             return Random.Range(longScrapReward.x, longScrapReward.y);
         }
@@ -50,7 +50,7 @@ public class Mission
 
     private int GenerateExpReward()
     {
-        if (this.MissionType == "Hard")
+        if (this.Difficulty == "Hard")
         {
             return Random.Range(longExpReward.x, longExpReward.y);
         }
@@ -60,6 +60,6 @@ public class Mission
 
     public override string ToString()
     {
-        return "(" + MissionID + " - " + MissionType + " - EXP: " + ExpReward + ", SCR: " + ScrapReward;
+        return "(" + ID + " - " + Difficulty + " - EXP: " + ExpReward + ", SCR: " + ScrapReward + ")";
     }
 }

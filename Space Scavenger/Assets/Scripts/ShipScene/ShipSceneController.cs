@@ -108,6 +108,7 @@ public class ShipSceneController : MonoBehaviour
             GameObject missionPanel = Instantiate(missionPanelPrefab, missionPanelLocations[positionCounter], Quaternion.identity);
 
             missionPanel.transform.SetParent(missionPanelParent.transform, false);
+            missionPanel.GetComponent<MissionPanelController>().Mission = mission;
 
             positionCounter += 1;
         }

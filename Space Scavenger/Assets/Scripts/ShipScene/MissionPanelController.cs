@@ -21,8 +21,22 @@ public class MissionPanelController : MonoBehaviour, ISelectHandler
         shipSceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ShipSceneController>();
     }
 
+    void Update()
+    {
+        UpdatePanelTexts();
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
         shipSceneController.SetSelectedMission(Mission);
+    }
+
+    private void UpdatePanelTexts()
+    {
+        missionIdText.text = Mission.ID.ToString();
+        missionDifficultyText.text = Mission.Difficulty;
+
+        expText.text = Mission.ExpReward.ToString();
+        scrapText.text = Mission.ScrapReward.ToString();
     }
 }
