@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Mission
 {
-    public Vector2Int shortExpReward;
-    public Vector2Int longExpReward;
-    public Vector2Int shortScrapReward;
-    public Vector2Int longScrapReward;
+    private Vector2Int shortExpReward = new Vector2Int(25, 45);
+    public Vector2Int longExpReward = new Vector2Int(60, 85);
+    public Vector2Int shortScrapReward = new Vector2Int(100, 170);
+    public Vector2Int longScrapReward = new Vector2Int(250, 325);
 
     private string LevelCode { get; }
 
@@ -18,30 +18,48 @@ public class Mission
 
     private int MissionID { get; set; }
 
-    public Mission()
+    public Mission(int id)
     {
-        MissionType = "Short";
+        this.MissionID = id;
 
-       ExpReward = GenerateExpReward();
+        MissionType = GenerateMissionType();
+
+        ExpReward = GenerateExpReward();
+        ScrapReward = GenerateScrapReward();
     }
 
-    public void GenerateMissionDetails(string missionType, int missionID)
+    private string GenerateMissionType()
     {
+        if (Random.value >= 0.8)
+        {
+            return "Hard";
+        }
 
+        return "Easy";
+    }
+
+    private int GenerateScrapReward()
+    {
+        if (this.MissionType == "Hard")
+        {
+            return Random.Range(longScrapReward.x, longScrapReward.y);
+        }
+
+        return Random.Range(shortScrapReward.x, shortScrapReward.y);
     }
 
     private int GenerateExpReward()
     {
-        if (this.MissionType == "Long")
+        if (this.MissionType == "Hard")
         {
             return Random.Range(longExpReward.x, longExpReward.y);
         }
 
-        return Random.Range(25, 45);
+        return Random.Range(shortExpReward.x, shortExpReward.y);
     }
 
     public override string ToString()
     {
-        return "HERE IS MISSION";
+        return "(" + MissionID + " - " + MissionType + " - EXP: " + ExpReward + ", SCR: " + ScrapReward;
     }
 }

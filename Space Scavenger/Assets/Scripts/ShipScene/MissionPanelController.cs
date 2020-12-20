@@ -12,14 +12,12 @@ public class MissionPanelController : MonoBehaviour, ISelectHandler
     public Text expText;
     public Text scrapText;
 
-    private Mission Mission { get; set; }
+    public Mission Mission { get; set; }
 
     private ShipSceneController shipSceneController;
 
     void Start()
     {
-        Mission = new Mission();
-
         shipSceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ShipSceneController>();
     }
 
