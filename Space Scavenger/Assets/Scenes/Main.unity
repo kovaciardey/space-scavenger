@@ -3646,7 +3646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipSize: 15
   startingAmmo: 100
-  reloadTime: 3
+  reloadTime: 1.5
 --- !u!54 &1441208922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5559,3 +5559,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37b7f50acb2b2ff45ba98c5004d6bd1b, type: 3}
+--- !u!1001 &4162751057934247174
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4162751057570919358, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_Name
+      value: Bolt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162751057570919359, guid: e42723b58fea7504bb9a31d8e6bd7b4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e42723b58fea7504bb9a31d8e6bd7b4f, type: 3}
