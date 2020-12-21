@@ -13,7 +13,7 @@ public class MonsterController : MonoBehaviour
         // randomly generate the damage value
         damageDealt = Random.Range(10.0f, 20.0f);
 
-        // keeping a reference of the player object on each monster for the scarp adding.
+        // keeping a reference of the player object on each monster for the scrap adding.
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -29,6 +29,7 @@ public class MonsterController : MonoBehaviour
         if (killedbyPlayer)
         {
             player.GetComponent<ScrapController>().AddScrap(gameObject.GetComponent<ScrapSpawner>().GetScrapToDrop());
+            player.GetComponent<ExperienceController>().AddExperience();
         }
 
         Destroy(gameObject);
