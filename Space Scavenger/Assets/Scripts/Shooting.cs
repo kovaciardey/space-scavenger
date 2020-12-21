@@ -42,5 +42,8 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    public bool GetCanFire() => canFire;
+    public bool GetCanFire()
+    {
+        return canFire;
+    }
 }

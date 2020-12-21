@@ -22,6 +22,12 @@ public class GameController : MonoBehaviour
     public HealthBar healthBar;
     public ReloadBar reloadBar;
 
+    public int bubbleSpacing = 5;
+    private int bubbleWidth = 30;
+    public GameObject shieldBubblePrefab;
+    public GameObject shieldParent;
+    List<GameObject> shieldBubbles;
+
     public GameObject reactorPrefab;
     public Vector3 reactorPosition = new Vector3(50, 0, 60);
 
@@ -52,6 +58,9 @@ public class GameController : MonoBehaviour
 
         ShowLifeText();
         ShowShieldsText();
+
+        shieldBubbles = new List<GameObject>();
+        GenerateShieldBubbles();
     }
 
     void Update()
@@ -61,6 +70,7 @@ public class GameController : MonoBehaviour
         UpdateAmmoDisplay();
         ShowScrapText();
         UpdateReloadBarDisplay();
+        UpdateShieldBubbleDisplay();
 
         if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
         {
@@ -88,6 +98,41 @@ public class GameController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             ResetScene();
+        }
+    }
+
+    private void GenerateShieldBubbles()
+    {
+        float bubbleX = 0;
+
+        for (int i = 0; i < shieldController.maxShields; i++)
+        {
+            GameObject shieldBubble = Instantiate(shieldBubblePrefab, new Vector2(bubbleX, 0), Quaternion.identity);
+
+            shieldBubble.transform.SetParent(shieldParent.transform, false);
+
+            shieldBubbles.Add(shieldBubble);
+
+            bubbleX += bubbleWidth + bubbleSpacing;
+        }
+    }
+
+    private void UpdateShieldBubbleDisplay()
+    {
+        int counter = 1;
+
+        foreach (GameObject shieldBubble in shieldBubbles)
+        {
+            if (counter <= shieldController.GetCurrentShields())
+            {
+                shieldBubble.GetComponent<ShieldBubbleController>().ShowFill();
+            }
+            else
+            {
+                shieldBubble.GetComponent<ShieldBubbleController>().HideFill();
+            }
+
+            counter += 1;
         }
     }
 
