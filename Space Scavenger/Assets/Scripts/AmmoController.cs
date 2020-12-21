@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class AmmoController : MonoBehaviour
 {
-    public int maxAmmo = 100;
+    public int clipSize = 15;
+    public int startingAmmo = 100;
+
+    public float reloadTime = 3f;
+
+    public int CurrentClipAmmo { get; set; }
+    public int CurrentAmmo { get; set; }
+    public float CurrentReloadTime { get; set; }
+
+    public bool IsReloading { get; set; }
+
+    void Start()
+    {
+        IsReloading = false;
+        CurrentClipAmmo = clipSize;
+        CurrentAmmo = startingAmmo;    
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.R) && !IsReloading && CurrentClipAmmo < clipSize)
+        {
+            StartCoroutine(ReloadRoutine());
+        }    
+    }
 
     public void SubtractAmmo() // only shoot 1 bullet at a time
     {
-        maxAmmo -= 1;
+        CurrentClipAmmo -= 1;
 
-        if (maxAmmo <= 0)
+        if (CurrentClipAmmo <= 0)
         {
-            maxAmmo = 0;
+            CurrentClipAmmo = 0;
         }
 
         //Debug.Log(maxAmmo);
@@ -20,13 +44,49 @@ public class AmmoController : MonoBehaviour
 
     public void AddAmmo(int amount) // increase the ammo count
     {
-        maxAmmo += amount;
+        CurrentAmmo += amount;
 
         //Debug.Log(maxAmmo);
     }
 
     public int GetMaxAmmo()
     {
-        return maxAmmo;
+        return startingAmmo;
+    }
+
+    IEnumerator ReloadRoutine()
+    {
+        if (IsReloading)
+        {
+            yield break;
+        }
+
+        IsReloading = true;
+        CurrentReloadTime = 0;
+
+        while (CurrentReloadTime < reloadTime)
+        {
+            CurrentReloadTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        CurrentReloadTime = reloadTime;
+
+        DoReload();
+
+        IsReloading = false;
+
+        Debug.Log(IsReloading);
+        Debug.Log(CurrentClipAmmo);
+    }
+
+    private void DoReload()
+    {
+        int clipDifference = clipSize - CurrentClipAmmo;
+
+        CurrentClipAmmo = clipSize;
+
+        CurrentAmmo -= clipDifference;
     }
 }

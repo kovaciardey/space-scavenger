@@ -12,11 +12,15 @@ public class GameController : MonoBehaviour
     public Text lifeText;
     public Text shieldsText;
     public Text ammoText;
+    public Text ammoClipText;
     public Text scrapText;
+
     public Text winLoseText;
     public Text resetText;
+    public Text reloadPromptText;
 
     public HealthBar healthBar;
+    public ReloadBar reloadBar;
 
     public GameObject reactorPrefab;
     public Vector3 reactorPosition = new Vector3(50, 0, 60);
@@ -26,6 +30,7 @@ public class GameController : MonoBehaviour
 
     private HealthController healthController;
     private ShieldController shieldController;
+    private AmmoController ammoController;
 
     private void Start()
     {
@@ -34,13 +39,16 @@ public class GameController : MonoBehaviour
         winLoseText.text = "";
 
         resetText.gameObject.SetActive(false);
+        reloadPromptText.gameObject.SetActive(false);
 
         reactorInitialColor = reactor.GetComponentInChildren<Renderer>().material.color;
 
         healthController = player.GetComponent<HealthController>();
         shieldController = player.GetComponent<ShieldController>();
+        ammoController = player.GetComponent<AmmoController>();
 
         healthBar.SetMaxHealth(healthController.GetMaxHealth());
+        reloadBar.SetMaxReloadValue(ammoController.reloadTime);
 
         ShowLifeText();
         ShowShieldsText();
@@ -50,8 +58,9 @@ public class GameController : MonoBehaviour
     {
         ShowLifeText();
         ShowShieldsText();
-        ShowAmmoText();
+        UpdateAmmoDisplay();
         ShowScrapText();
+        UpdateReloadBarDisplay();
 
         if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
         {
@@ -65,6 +74,15 @@ public class GameController : MonoBehaviour
             ShowWinLoseMessage("Game Over!");
 
             resetText.gameObject.SetActive(true);
+        }
+
+        if (player.GetComponent<AmmoController>().CurrentClipAmmo < 5)
+        {
+            reloadPromptText.gameObject.SetActive(true);
+        }
+        else
+        {
+            reloadPromptText.gameObject.SetActive(false);
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -88,10 +106,16 @@ public class GameController : MonoBehaviour
     }
 
     // show ammo
-    private void ShowAmmoText()
+    private void UpdateAmmoDisplay()
     {
-        ammoText.text = "Ammo: " + player.GetComponent<AmmoController>().GetMaxAmmo().ToString("0");
+        ammoClipText.text = player.GetComponent<AmmoController>().CurrentClipAmmo.ToString();
+        ammoText.text = player.GetComponent<AmmoController>().CurrentAmmo.ToString();
     }
+
+    private void UpdateReloadBarDisplay()
+    {
+        reloadBar.SetCurrentReloadValue(ammoController.CurrentReloadTime);
+    } 
 
     // schow scrap
     private void ShowScrapText()
