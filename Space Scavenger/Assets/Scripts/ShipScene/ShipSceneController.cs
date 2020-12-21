@@ -96,7 +96,10 @@ public class ShipSceneController : MonoBehaviour
 
         for (int i = 1; i <= 3; i++)
         {
-            missions.Add(new Mission(i));
+            Mission mission = new Mission(i);
+            mission.LevelCode = GetComponent<LevelCodeGenerator>().GenerateLevelString(mission.Difficulty);
+
+            missions.Add(mission);
         }
     }
 

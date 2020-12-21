@@ -9,7 +9,7 @@ public class Mission
     public Vector2Int shortScrapReward = new Vector2Int(100, 170);
     public Vector2Int longScrapReward = new Vector2Int(250, 325);
 
-    private string LevelCode { get; }
+    public string LevelCode { get; set; }
 
     public int ExpReward { get; }
     public int ScrapReward { get; }
@@ -60,6 +60,6 @@ public class Mission
 
     public override string ToString()
     {
-        return "(" + ID + " - " + Difficulty + " - EXP: " + ExpReward + ", SCR: " + ScrapReward + ")";
+        return "(" + ID + " - " + Difficulty + " - EXP: " + ExpReward + ", SCR: " + ScrapReward + ", CODE: " + LevelCode + ")";
     }
 }
