@@ -2691,8 +2691,6 @@ MonoBehaviour:
   player: {fileID: 1441208912}
   monsterSpawner: {fileID: 1444715393}
   pickUpSpawner: {fileID: 1614261933}
-  lifeText: {fileID: 0}
-  shieldsText: {fileID: 0}
   ammoText: {fileID: 1491032524}
   ammoClipText: {fileID: 1307461686}
   scrapText: {fileID: 887080475}
@@ -3558,6 +3556,7 @@ GameObject:
   - component: {fileID: 1441208921}
   - component: {fileID: 1441208923}
   - component: {fileID: 1441208924}
+  - component: {fileID: 1441208925}
   - component: {fileID: 1441208913}
   - component: {fileID: 1441208922}
   m_Layer: 0
@@ -3760,6 +3759,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShields: 3
   shieldRechargeDelay: 3
+--- !u!114 &1441208925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441208912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43131ed6aa9450f4997b4e4788f18571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePerKill: 15
 --- !u!1 &1444715393
 GameObject:
   m_ObjectHideFlags: 0
