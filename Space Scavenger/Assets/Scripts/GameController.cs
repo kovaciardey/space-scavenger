@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
     public GameObject monsterSpawner;
     public GameObject pickUpSpawner;
 
-    public Text lifeText;
-    public Text shieldsText;
     public Text ammoText;
     public Text ammoClipText;
     public Text scrapText;
@@ -56,8 +54,7 @@ public class GameController : MonoBehaviour
         healthBar.SetMaxHealth(healthController.GetMaxHealth());
         reloadBar.SetMaxReloadValue(ammoController.reloadTime);
 
-        ShowLifeText();
-        ShowShieldsText();
+        UpdateHealthBar();
 
         shieldBubbles = new List<GameObject>();
         GenerateShieldBubbles();
@@ -65,10 +62,9 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        ShowLifeText();
-        ShowShieldsText();
+        UpdateHealthBar();
         UpdateAmmoDisplay();
-        ShowScrapText();
+        UpdateScrapAmountDisplay();
         UpdateReloadBarDisplay();
         UpdateShieldBubbleDisplay();
 
@@ -137,17 +133,11 @@ public class GameController : MonoBehaviour
     }
 
     // show life
-    private void ShowLifeText()
+    private void UpdateHealthBar()
     {
         float healthValue = healthController.GetCurrentHealth();
 
-        lifeText.text = "Health: " + healthValue.ToString() + "/" + healthController.GetMaxHealth().ToString();
         healthBar.SetHealth(healthValue);
-    }
-
-    private void ShowShieldsText()
-    {
-        shieldsText.text = "Shields: " + shieldController.GetCurrentShields().ToString() + "/" + shieldController.GetMaxShields().ToString();
     }
 
     // show ammo
@@ -163,9 +153,9 @@ public class GameController : MonoBehaviour
     } 
 
     // schow scrap
-    private void ShowScrapText()
+    private void UpdateScrapAmountDisplay()
     {
-        scrapText.text = "Scrap: " + player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
+        scrapText.text = player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
     }
 
     // show whether you wopn or lost the game
