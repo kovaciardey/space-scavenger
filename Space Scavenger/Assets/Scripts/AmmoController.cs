@@ -13,18 +13,18 @@ public class AmmoController : MonoBehaviour
     public int CurrentAmmo { get; set; }
     public float CurrentReloadTime { get; set; }
 
-    private bool isReloading;
+    public bool IsReloading { get; set; }
 
     void Start()
     {
-        isReloading = false;
+        IsReloading = false;
         CurrentClipAmmo = clipSize;
         CurrentAmmo = startingAmmo;    
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && !isReloading)
+        if (Input.GetKey(KeyCode.R) && !IsReloading && CurrentClipAmmo < clipSize)
         {
             StartCoroutine(ReloadRoutine());
         }    
@@ -44,7 +44,7 @@ public class AmmoController : MonoBehaviour
 
     public void AddAmmo(int amount) // increase the ammo count
     {
-        startingAmmo += amount;
+        CurrentAmmo += amount;
 
         //Debug.Log(maxAmmo);
     }
@@ -56,11 +56,12 @@ public class AmmoController : MonoBehaviour
 
     IEnumerator ReloadRoutine()
     {
-        if (isReloading)
+        if (IsReloading)
         {
             yield break;
         }
 
+        IsReloading = true;
         CurrentReloadTime = 0;
 
         while (CurrentReloadTime < reloadTime)
@@ -72,6 +73,20 @@ public class AmmoController : MonoBehaviour
 
         CurrentReloadTime = reloadTime;
 
-        isReloading = false;
+        DoReload();
+
+        IsReloading = false;
+
+        Debug.Log(IsReloading);
+        Debug.Log(CurrentClipAmmo);
+    }
+
+    private void DoReload()
+    {
+        int clipDifference = clipSize - CurrentClipAmmo;
+
+        CurrentClipAmmo = clipSize;
+
+        CurrentAmmo -= clipDifference;
     }
 }

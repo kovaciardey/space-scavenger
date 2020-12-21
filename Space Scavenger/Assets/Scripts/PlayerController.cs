@@ -43,7 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             LookAtMouse();
 
-            if (Input.GetButton("Fire1") && GetComponent<Shooting>().GetCanFire())
+            // there seems to be a bug when emptyign the clip entirely that is blocking the shooting
+            // it is recommended to reload earlier
+            if (Input.GetButton("Fire1") && GetComponent<Shooting>().GetCanFire() && !GetComponent<AmmoController>().IsReloading)
             {
                 GetComponent<Shooting>().Shoot();
             }

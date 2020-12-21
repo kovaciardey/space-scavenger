@@ -76,9 +76,13 @@ public class GameController : MonoBehaviour
             resetText.gameObject.SetActive(true);
         }
 
-        if (player.GetComponent<AmmoController>().CurrentClipAmmo == 0)
+        if (player.GetComponent<AmmoController>().CurrentClipAmmo < 5)
         {
             reloadPromptText.gameObject.SetActive(true);
+        }
+        else
+        {
+            reloadPromptText.gameObject.SetActive(false);
         }
 
         if (Input.GetButtonDown("Jump"))
