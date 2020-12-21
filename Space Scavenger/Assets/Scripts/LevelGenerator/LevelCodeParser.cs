@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class LevelCodeParser : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private LevelSceneInfo levelSceneInfo;
+
     void Start()
     {
-        
-    }
+        levelSceneInfo = GameObject.FindGameObjectWithTag("LevelInfo").GetComponent<LevelSceneInfo>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log(levelSceneInfo.SelectedMission.ToString());
     }
 }
