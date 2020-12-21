@@ -23,7 +23,7 @@ public class ShootOnSight : MonoBehaviour
     {
         if (
             Vector3.Distance(transform.position, target.transform.position) <= minDistance &&
-            GetComponent<Shooting>().GetCanFire() &&
+            GetComponent<MonsterShooting>().GetCanFire() &&
             target.GetComponent<PlayerController>().IsAlive
             )
         {
@@ -35,6 +35,6 @@ public class ShootOnSight : MonoBehaviour
     {
         transform.LookAt(target.transform);
 
-        GetComponent<Shooting>().Shoot();
+        GetComponent<MonsterShooting>().Shoot();
     }
 }

@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 8378457397566485904}
   - component: {fileID: 8378457397566485907}
   - component: {fileID: 114335094743898220}
-  - component: {fileID: 114915287294833160}
+  - component: {fileID: 114150967180856958}
   - component: {fileID: 114852767338733260}
   - component: {fileID: 114980864024740246}
   m_Layer: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 20
---- !u!114 &114915287294833160
+--- !u!114 &114150967180856958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,14 +277,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8378457397566485906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a789f649a1fdd95449d422503d91c126, type: 3}
+  m_Script: {fileID: 11500000, guid: 07a7c67b18e47ca43ba9a09964f768c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 842994205893341611, guid: 8585aa9174055494591983558ce39721, type: 3}
   fireRate: 2
-  clipSize: 15
-  usesAmmo: 0
-  needsToReload: 0
 --- !u!114 &114852767338733260
 MonoBehaviour:
   m_ObjectHideFlags: 0
