@@ -112,6 +112,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8980018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8980019}
+  m_Layer: 0
+  m_Name: LevelParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8980019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8980018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323834360
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,3 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d32509c2aad9143b80ae796caf9651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingRoom: {fileID: 3359143964613734633, guid: e8f34bf259488584982998fd11e14420,
+    type: 3}
+  corridor: {fileID: 3018524978532795603, guid: 1af3af206393b874b94569ed25170f1f,
+    type: 3}
+  roomA: {fileID: 7630132395243454161, guid: 82b5cb6f9bb058143b9df7cfae0cf791, type: 3}
+  roomB: {fileID: 8863970599228909861, guid: 61601b4c9feb6de44b051838b728a670, type: 3}
+  finish: {fileID: 2221476262163723417, guid: 9be0d3d9d87586547aa60e7978614114, type: 3}
+  levelParent: {fileID: 8980018}
