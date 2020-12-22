@@ -42,6 +42,7 @@ public class LevelItemGenerator : MonoBehaviour
             }
             else
             {
+                if (Random.value <= room.GetComponent<IntermediaryRoomScript>().pickUpSpawnRate)
                 {
                     Instantiate(GetRandomPickUpType(), room.GetComponent<IntermediaryRoomScript>().pickUpLocation.transform);
                 }
