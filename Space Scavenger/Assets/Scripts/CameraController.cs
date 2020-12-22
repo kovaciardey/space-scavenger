@@ -3,11 +3,19 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
 
     void LateUpdate()
     {
-        // simple follow camera
-        transform.position = player.transform.position;
+        if (player != null)
+        {
+            // simple follow camera
+            transform.position = player.transform.position;
+        }
     }
+
+    public void SetPlayer(GameObject playerObject)
+    {
+        player = playerObject;
+    } 
 }

@@ -76,9 +76,6 @@ public class AmmoController : MonoBehaviour
         DoReload();
 
         IsReloading = false;
-
-        Debug.Log(IsReloading);
-        Debug.Log(CurrentClipAmmo);
     }
 
     private void DoReload()

@@ -42,7 +42,7 @@ public class ShipSceneController : MonoBehaviour
 
         levelSceneInfo = GameObject.FindGameObjectWithTag("LevelInfo").GetComponent<LevelSceneInfo>();
 
-        Debug.Log(levelSceneInfo);
+        //Debug.Log(levelSceneInfo);
     }
 
     private void Update()

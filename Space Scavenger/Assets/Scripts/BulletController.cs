@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
         // move the bullet forward 
         transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
 
-        DebugForward();
+        //DebugForward();
         Destroy(gameObject, bulletLife);
     }
 
@@ -58,23 +58,18 @@ public class BulletController : MonoBehaviour
             
             Destroy(gameObject);
         }
-
-        // the crates will have some more functionality but at the moment they just act as barriers and will destroy bullets on contact
-        if (other.gameObject.tag == "Crate")
-        {
-            //Debug.Log("HERE");
-
-            //other.gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
-
-            //Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        // destroy the bullet if out of bounds
-        if (other.gameObject.tag == "Boundary")
+        // destroy bullet on colision with wall
+        if (collision.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
+
+        // destroy bullet on collision with crate 
+        if (collision.gameObject.tag == "Crate")
         {
             Destroy(gameObject);
         }
