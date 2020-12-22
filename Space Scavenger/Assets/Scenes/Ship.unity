@@ -961,8 +961,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65cb734dedac74c9b60a0c2c742da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuPrefab: {fileID: 0}
-  pauseMenuParent: {fileID: 0}
+  pauseMenuPrefab: {fileID: 2840365637140885301, guid: 15d45933b3ccc0241a33c402ae0493de,
+    type: 3}
+  pauseMenuParent: {fileID: 1137530254}
 --- !u!1 &396879250
 GameObject:
   m_ObjectHideFlags: 0

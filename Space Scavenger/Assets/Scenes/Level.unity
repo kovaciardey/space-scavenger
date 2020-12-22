@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 966168495}
   - component: {fileID: 966168497}
   - component: {fileID: 966168498}
+  - component: {fileID: 966168499}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1077,6 +1078,21 @@ MonoBehaviour:
   - {fileID: 8498400009254453863, guid: 3e6c686c93b3682439d38810f001da43, type: 3}
   monsterPrefab: {fileID: 8378457397566485906, guid: 32ad01e0b6830454b9b91d98c07bcdcf,
     type: 3}
+--- !u!114 &966168499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966168494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e65cb734dedac74c9b60a0c2c742da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuPrefab: {fileID: 2840365637140885301, guid: 15d45933b3ccc0241a33c402ae0493de,
+    type: 3}
+  pauseMenuParent: {fileID: 571662393}
 --- !u!1 &975189700
 GameObject:
   m_ObjectHideFlags: 0

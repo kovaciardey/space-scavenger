@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseGameScript : MonoBehaviour
 {
@@ -19,6 +20,16 @@ public class PauseGameScript : MonoBehaviour
         // create the pause menu
         pauseMenuObject = Instantiate(pauseMenuPrefab, new Vector2(0, 0), Quaternion.identity);
         pauseMenuObject.transform.SetParent(pauseMenuParent.transform, false);
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            pauseMenuObject.GetComponent<PauseMenuController>().ShowShipSceneButtons();
+        } 
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            pauseMenuObject.GetComponent<PauseMenuController>().ShowLevelSceneButtons();
+        }
+
         pauseMenuObject.gameObject.SetActive(false);
     }
 
@@ -31,7 +42,7 @@ public class PauseGameScript : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         if (!IsPaused)
         {
@@ -44,7 +55,18 @@ public class PauseGameScript : MonoBehaviour
         {
             IsPaused = false;
             Time.timeScale = 1;
+
             pauseMenuObject.gameObject.SetActive(false);
         }
+    }
+
+    public void SaveGame()
+    {
+        Debug.Log("Game Saved");
+    }
+
+    public void BackToShip()
+    {
+        SceneManager.LoadScene(1);
     }
 }
