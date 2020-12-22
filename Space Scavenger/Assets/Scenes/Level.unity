@@ -1008,6 +1008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 1988758340}
+  reactorPrefab: {fileID: 829752475508326824, guid: 9cee7c3bec12d1940a167c65831d298b,
+    type: 3}
   playerPrefab: {fileID: 888522956546586396, guid: 41570db333cbd6740be6ef8ac98308bb,
     type: 3}
   ammoText: {fileID: 359968021}

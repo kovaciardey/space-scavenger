@@ -7,9 +7,8 @@ public class GameController : MonoBehaviour
 {
     public CameraController cameraController;
 
+    public GameObject reactorPrefab;
     public GameObject playerPrefab;
-    //public GameObject monsterSpawner;
-    //public GameObject pickUpSpawner;
 
     public Text ammoText;
     public Text ammoClipText;
@@ -28,11 +27,8 @@ public class GameController : MonoBehaviour
     public GameObject shieldParent;
     List<GameObject> shieldBubbles;
 
-    //public GameObject reactorPrefab;
-    //public Vector3 reactorPosition = new Vector3(50, 0, 60);
-
-    //private GameObject reactor;
-    //private Color reactorInitialColor;
+    private GameObject reactor;
+    private Color reactorInitialColor;
 
     public GameObject Player { get; set; }
 
@@ -56,6 +52,8 @@ public class GameController : MonoBehaviour
 
         startingRoom = GetComponent<LevelCodeParser>().StartingRoom;
         finishRoom = GetComponent<LevelCodeParser>().FinishRoom;
+
+        SpawnLevelObjective();
 
         SpawnPlayer();
 
@@ -82,12 +80,12 @@ public class GameController : MonoBehaviour
         UpdateReloadBarDisplay();
         UpdateShieldBubbleDisplay();
 
-        //if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
-        //{
-        //    ShowWinLoseMessage("You Win!");
+        if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
+        {
+            ShowWinLoseMessage("You Win!");
 
-        //    resetText.gameObject.SetActive(true);
-        //}
+            resetText.gameObject.SetActive(true);
+        }
 
         if (!Player.GetComponent<PlayerController>().IsAlive)
         {
@@ -104,11 +102,6 @@ public class GameController : MonoBehaviour
         {
             reloadPromptText.gameObject.SetActive(false);
         }
-
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    ResetScene();
-        //}
     }
 
     // draw the shield bubbles to the screen
@@ -185,26 +178,8 @@ public class GameController : MonoBehaviour
     }
 
     // spawn the win condition
-    //private void SpawnReactor()
-    //{
-    //    reactor = Instantiate(reactorPrefab, reactorPosition, Quaternion.identity);
-    //}
-
-    //// reset the scene
-    //private void ResetScene()
-    //{
-    //    winLoseText.text = "";
-
-    //    player.GetComponent<PlayerController>().IsAlive = true;
-    //    player.GetComponent<HealthController>().ResetHealth();
-    //    player.GetComponent<ShieldController>().ResetShields();
-
-    //    reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
-    //    reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
-
-    //    monsterSpawner.GetComponent<MonsterSpawner>().SpawnMonsters();
-    //    pickUpSpawner.GetComponent<PickUpSpawner>().SpawnPickUps();
-
-    //    resetText.gameObject.SetActive(false);
-    //}
+    private void SpawnLevelObjective()
+    {
+        reactor = Instantiate(reactorPrefab, finishRoom.GetComponent<FinishRoomScript>().levelObjective.transform.position, Quaternion.identity);
+    }
 }
