@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class LevelCodeParser : MonoBehaviour
 {
-    public GameObject startingRoom;
+    public GameObject startingRoomPrefab;
     public GameObject corridor;
     public GameObject roomA;
     public GameObject roomB;
-    public GameObject finish;
+    public GameObject finishPrefab;
 
     public GameObject levelParent;
+
+    public GameObject StartingRoom { get; set; }
+    public GameObject FinishRoom { get; set; }
 
     private Dictionary<string, GameObject> roomPrefabMap;
 
@@ -20,20 +23,20 @@ public class LevelCodeParser : MonoBehaviour
 
     private Mission levelMission;
 
-    void Start()
+    void Awake()
     {
         levelSceneInfo = GameObject.FindGameObjectWithTag("LevelInfo").GetComponent<LevelSceneInfo>();
 
-        Debug.Log(levelSceneInfo.SelectedMission.ToString());
+        //Debug.Log(levelSceneInfo.SelectedMission.ToString());
 
         levelMission = levelSceneInfo.SelectedMission;
 
         roomPrefabMap = new Dictionary<string, GameObject> {
-            { "S", startingRoom },
+            { "S", startingRoomPrefab },
             { "C", corridor },
             { "Ra", roomA },
             { "Rb", roomB },
-            { "F", finish },
+            { "F", finishPrefab },
         };
 
         ParseLevelString();
@@ -48,8 +51,17 @@ public class LevelCodeParser : MonoBehaviour
         foreach (string room in roomsList)
         {
             GameObject roomPrefab = Instantiate(roomPrefabMap[room], position, Quaternion.identity);
-
             position = roomPrefab.GetComponent<Room>().GetConnectorB().transform.position;
+
+            if (room == "S")
+            {
+                StartingRoom = roomPrefab;
+            }
+
+            if (room == "F")
+            {
+                FinishRoom = roomPrefab;
+            }
 
             roomPrefab.transform.parent = levelParent.transform;
         }

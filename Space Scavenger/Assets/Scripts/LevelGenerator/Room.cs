@@ -15,4 +15,10 @@ public class Room : MonoBehaviour
     {
         return connectorB;
     }
+
+    public void DestroyConnectors()
+    {
+        Destroy(connectorA);
+        Destroy(connectorB);
+    }
 }

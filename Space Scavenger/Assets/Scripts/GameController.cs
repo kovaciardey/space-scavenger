@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject monsterSpawner;
-    public GameObject pickUpSpawner;
+    public CameraController cameraController;
+
+    public GameObject playerPrefab;
+    //public GameObject monsterSpawner;
+    //public GameObject pickUpSpawner;
 
     public Text ammoText;
     public Text ammoClipText;
@@ -26,30 +28,42 @@ public class GameController : MonoBehaviour
     public GameObject shieldParent;
     List<GameObject> shieldBubbles;
 
-    public GameObject reactorPrefab;
-    public Vector3 reactorPosition = new Vector3(50, 0, 60);
+    //public GameObject reactorPrefab;
+    //public Vector3 reactorPosition = new Vector3(50, 0, 60);
 
-    private GameObject reactor;
-    private Color reactorInitialColor;
+    //private GameObject reactor;
+    //private Color reactorInitialColor;
+
+    public GameObject Player { get; set; }
 
     private HealthController healthController;
     private ShieldController shieldController;
     private AmmoController ammoController;
 
+    private GameObject startingRoom;
+    private GameObject finishRoom;
+
     private void Start()
     {
-        SpawnReactor();
+        //SpawnReactor();
 
         winLoseText.text = "";
 
         resetText.gameObject.SetActive(false);
         reloadPromptText.gameObject.SetActive(false);
 
-        reactorInitialColor = reactor.GetComponentInChildren<Renderer>().material.color;
+        //reactorInitialColor = reactor.GetComponentInChildren<Renderer>().material.color;
 
-        healthController = player.GetComponent<HealthController>();
-        shieldController = player.GetComponent<ShieldController>();
-        ammoController = player.GetComponent<AmmoController>();
+        startingRoom = GetComponent<LevelCodeParser>().StartingRoom;
+        finishRoom = GetComponent<LevelCodeParser>().FinishRoom;
+
+        SpawnPlayer();
+
+        healthController = Player.GetComponent<HealthController>();
+        shieldController = Player.GetComponent<ShieldController>();
+        ammoController = Player.GetComponent<AmmoController>();
+
+        cameraController.SetPlayer(Player);
 
         healthBar.SetMaxHealth(healthController.GetMaxHealth());
         reloadBar.SetMaxReloadValue(ammoController.reloadTime);
@@ -68,21 +82,21 @@ public class GameController : MonoBehaviour
         UpdateReloadBarDisplay();
         UpdateShieldBubbleDisplay();
 
-        if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
-        {
-            ShowWinLoseMessage("You Win!");
+        //if (reactor.GetComponent<ReactorController>().HasBeenClaimed)
+        //{
+        //    ShowWinLoseMessage("You Win!");
 
-            resetText.gameObject.SetActive(true);
-        }
+        //    resetText.gameObject.SetActive(true);
+        //}
 
-        if (!player.GetComponent<PlayerController>().IsAlive)
+        if (!Player.GetComponent<PlayerController>().IsAlive)
         {
             ShowWinLoseMessage("Game Over!");
 
             resetText.gameObject.SetActive(true);
         }
 
-        if (player.GetComponent<AmmoController>().CurrentClipAmmo < 5)
+        if (Player.GetComponent<AmmoController>().CurrentClipAmmo < 5)
         {
             reloadPromptText.gameObject.SetActive(true);
         }
@@ -91,10 +105,10 @@ public class GameController : MonoBehaviour
             reloadPromptText.gameObject.SetActive(false);
         }
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            ResetScene();
-        }
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    ResetScene();
+        //}
     }
 
     private void GenerateShieldBubbles()
@@ -143,8 +157,8 @@ public class GameController : MonoBehaviour
     // show ammo
     private void UpdateAmmoDisplay()
     {
-        ammoClipText.text = player.GetComponent<AmmoController>().CurrentClipAmmo.ToString();
-        ammoText.text = player.GetComponent<AmmoController>().CurrentAmmo.ToString();
+        ammoClipText.text = Player.GetComponent<AmmoController>().CurrentClipAmmo.ToString();
+        ammoText.text = Player.GetComponent<AmmoController>().CurrentAmmo.ToString();
     }
 
     private void UpdateReloadBarDisplay()
@@ -155,7 +169,7 @@ public class GameController : MonoBehaviour
     // schow scrap
     private void UpdateScrapAmountDisplay()
     {
-        scrapText.text = player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
+        scrapText.text = Player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
     }
 
     // show whether you wopn or lost the game
@@ -164,27 +178,32 @@ public class GameController : MonoBehaviour
         winLoseText.text = message;
     }
 
+    private void SpawnPlayer()
+    {
+        Player = Instantiate(playerPrefab, startingRoom.GetComponent<StartingRoomScript>().playerSpawnLocation.transform.position, Quaternion.identity);
+    }
+
     // spawn the win condition
-    private void SpawnReactor()
-    {
-        reactor = Instantiate(reactorPrefab, reactorPosition, Quaternion.identity);
-    }
+    //private void SpawnReactor()
+    //{
+    //    reactor = Instantiate(reactorPrefab, reactorPosition, Quaternion.identity);
+    //}
 
-    // reset the scene
-    private void ResetScene()
-    {
-        winLoseText.text = "";
+    //// reset the scene
+    //private void ResetScene()
+    //{
+    //    winLoseText.text = "";
 
-        player.GetComponent<PlayerController>().IsAlive = true;
-        player.GetComponent<HealthController>().ResetHealth();
-        player.GetComponent<ShieldController>().ResetShields();
+    //    player.GetComponent<PlayerController>().IsAlive = true;
+    //    player.GetComponent<HealthController>().ResetHealth();
+    //    player.GetComponent<ShieldController>().ResetShields();
 
-        reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
-        reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
+    //    reactor.GetComponent<ReactorController>().HasBeenClaimed = false;
+    //    reactor.GetComponentInChildren<Renderer>().material.color = reactorInitialColor;
 
-        monsterSpawner.GetComponent<MonsterSpawner>().SpawnMonsters();
-        pickUpSpawner.GetComponent<PickUpSpawner>().SpawnPickUps();
+    //    monsterSpawner.GetComponent<MonsterSpawner>().SpawnMonsters();
+    //    pickUpSpawner.GetComponent<PickUpSpawner>().SpawnPickUps();
 
-        resetText.gameObject.SetActive(false);
-    }
+    //    resetText.gameObject.SetActive(false);
+    //}
 }
