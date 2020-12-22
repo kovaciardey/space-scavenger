@@ -1073,6 +1073,8 @@ MonoBehaviour:
   pickUps:
   - {fileID: 7499239819426581347, guid: c49ee36e710644548b302b0012ad3703, type: 3}
   - {fileID: 8498400009254453863, guid: 3e6c686c93b3682439d38810f001da43, type: 3}
+  monsterPrefab: {fileID: 8378457397566485906, guid: 32ad01e0b6830454b9b91d98c07bcdcf,
+    type: 3}
 --- !u!1 &975189700
 GameObject:
   m_ObjectHideFlags: 0

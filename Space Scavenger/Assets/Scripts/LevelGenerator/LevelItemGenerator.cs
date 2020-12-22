@@ -6,6 +6,8 @@ public class LevelItemGenerator : MonoBehaviour
 {
     public GameObject[] pickUps;
 
+    public GameObject monsterPrefab;
+
     public void GenerateItems()
     {
         foreach (GameObject room in GetComponent<LevelCodeParser>().roomGameObjects)
@@ -34,6 +36,31 @@ public class LevelItemGenerator : MonoBehaviour
                     }
                 }
             } 
+            else if (room.GetComponent<Room>().RoomType == "F")
+            {
+
+            }
+            else
+            {
+                {
+                    Instantiate(GetRandomPickUpType(), room.GetComponent<IntermediaryRoomScript>().pickUpLocation.transform);
+                }
+
+                if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Easy")
+                {
+                    foreach (GameObject monsterLocation in room.GetComponent<IntermediaryRoomScript>().easyMonsterLocations)
+                    {
+                        Instantiate(monsterPrefab, monsterLocation.transform);
+                    }
+                }
+                else if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Hard")
+                {
+                    foreach (GameObject monsterLocation in room.GetComponent<IntermediaryRoomScript>().hardMonsterLocations)
+                    {
+                        Instantiate(monsterPrefab, monsterLocation.transform);
+                    }
+                }
+            }
         }
     }
 
