@@ -21,7 +21,7 @@ public class LevelCodeParser : MonoBehaviour
 
     private LevelSceneInfo levelSceneInfo;
 
-    private Mission levelMission;
+    public Mission LevelMission { get; set; }
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class LevelCodeParser : MonoBehaviour
 
         //Debug.Log(levelSceneInfo.SelectedMission.ToString());
 
-        levelMission = levelSceneInfo.SelectedMission;
+        LevelMission = levelSceneInfo.SelectedMission;
 
         roomPrefabMap = new Dictionary<string, GameObject> {
             { "S", startingRoomPrefab },
@@ -42,11 +42,13 @@ public class LevelCodeParser : MonoBehaviour
         ParseLevelString();
 
         GetComponent<LevelItemGenerator>().GenerateItems();
+
+        DestroyLevelConnectors();
     }
 
     private void ParseLevelString()
     {
-        string[] roomsList = levelMission.LevelCode.Split('-');
+        string[] roomsList = LevelMission.LevelCode.Split('-');
 
         Vector3 position = new Vector3(0, 0, 0);
 
@@ -69,6 +71,15 @@ public class LevelCodeParser : MonoBehaviour
             roomPrefab.transform.parent = levelParent.transform;
 
             roomGameObjects.Add(roomPrefab);
+        }
+    }
+
+    // remove the connector elements from the prefab used to generate the level
+    private void DestroyLevelConnectors()
+    {
+        foreach (GameObject room in roomGameObjects)
+        {
+            room.GetComponent<Room>().DestroyConnectors();
         }
     }
 }

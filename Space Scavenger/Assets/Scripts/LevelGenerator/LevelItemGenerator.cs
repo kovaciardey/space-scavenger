@@ -18,7 +18,22 @@ public class LevelItemGenerator : MonoBehaviour
 
                     Instantiate(pickUp, pickUpLocation.transform);
                 } 
-            }
+            } 
+            else if (room.GetComponent<Room>().RoomType == "C")
+            {
+                if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Easy")
+                {
+                    Instantiate(GetRandomPickUpType(), room.GetComponent<CorridorScript>().pickUpLocation.transform);
+                } 
+                else if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Hard")
+                {
+                    // spawn the pickup with a rate
+                    if (Random.value <= room.GetComponent<CorridorScript>().spawnRate)
+                    {
+                        Instantiate(GetRandomPickUpType(), room.GetComponent<CorridorScript>().pickUpLocation.transform);
+                    }
+                }
+            } 
         }
     }
 
