@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShipSceneController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class ShipSceneController : MonoBehaviour
 
     private List<Mission> missions;
 
+    private LevelSceneInfo levelSceneInfo;
+
     private void Start()
     {
         experienceBar.SetMaxExp(maxExp);
@@ -36,6 +39,10 @@ public class ShipSceneController : MonoBehaviour
         GenerateMissions();
 
         ShowMissionsOnScreen();
+
+        levelSceneInfo = GameObject.FindGameObjectWithTag("LevelInfo").GetComponent<LevelSceneInfo>();
+
+        Debug.Log(levelSceneInfo);
     }
 
     private void Update()
@@ -78,7 +85,9 @@ public class ShipSceneController : MonoBehaviour
         }
         else
         {
-            Debug.Log(SelectedMission.ToString());
+            levelSceneInfo.SelectedMission = SelectedMission;
+
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -96,7 +105,10 @@ public class ShipSceneController : MonoBehaviour
 
         for (int i = 1; i <= 3; i++)
         {
-            missions.Add(new Mission(i));
+            Mission mission = new Mission(i);
+            mission.LevelCode = GetComponent<LevelCodeGenerator>().GenerateLevelString(mission.Difficulty);
+
+            missions.Add(mission);
         }
     }
 

@@ -424,6 +424,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112322965}
   m_CullTransparentMesh: 0
+--- !u!1 &135918132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 135918133}
+  - component: {fileID: 135918134}
+  - component: {fileID: 135918135}
+  m_Layer: 0
+  m_Name: LevelSceneInfo
+  m_TagString: LevelInfo
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &135918133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135918132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &135918134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135918132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bed5ff45274a547be93acf2d85c28b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &135918135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135918132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5aa91571bf08604f84d4a140ff616db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &186602088
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 350985090}
   - component: {fileID: 350985091}
+  - component: {fileID: 350985092}
   m_Layer: 0
   m_Name: ShipController
   m_TagString: GameController
@@ -877,6 +934,20 @@ MonoBehaviour:
   - {x: 0, y: 130}
   - {x: 0, y: 0}
   - {x: 0, y: -130}
+--- !u!114 &350985092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350985089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2152623ea62da44893a2ef0fd03252e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easyMissionLengths: {x: 1, y: 3}
+  hardMissionLengths: {x: 3, y: 6}
 --- !u!1 &396879250
 GameObject:
   m_ObjectHideFlags: 0
