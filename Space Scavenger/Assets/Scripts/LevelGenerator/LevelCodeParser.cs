@@ -17,7 +17,7 @@ public class LevelCodeParser : MonoBehaviour
 
     private Dictionary<string, GameObject> roomPrefabMap;
 
-    private List<GameObject> roomGameObjects = new List<GameObject>();
+    public List<GameObject> roomGameObjects = new List<GameObject>();
 
     private LevelSceneInfo levelSceneInfo;
 
@@ -40,6 +40,8 @@ public class LevelCodeParser : MonoBehaviour
         };
 
         ParseLevelString();
+
+        GetComponent<LevelItemGenerator>().GenerateItems();
     }
 
     private void ParseLevelString()
@@ -52,6 +54,7 @@ public class LevelCodeParser : MonoBehaviour
         {
             GameObject roomPrefab = Instantiate(roomPrefabMap[room], position, Quaternion.identity);
             position = roomPrefab.GetComponent<Room>().GetConnectorB().transform.position;
+            roomPrefab.GetComponent<Room>().RoomType = room;
 
             if (room == "S")
             {
@@ -64,6 +67,8 @@ public class LevelCodeParser : MonoBehaviour
             }
 
             roomPrefab.transform.parent = levelParent.transform;
+
+            roomGameObjects.Add(roomPrefab);
         }
     }
 }

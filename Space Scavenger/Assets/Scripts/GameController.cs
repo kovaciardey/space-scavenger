@@ -111,6 +111,7 @@ public class GameController : MonoBehaviour
         //}
     }
 
+    // draw the shield bubbles to the screen
     private void GenerateShieldBubbles()
     {
         float bubbleX = 0;
@@ -172,7 +173,7 @@ public class GameController : MonoBehaviour
         scrapText.text = Player.GetComponent<ScrapController>().GetScrapAmount().ToString("0");
     }
 
-    // show whether you wopn or lost the game
+    // show whether you won or lost the game
     private void ShowWinLoseMessage(string message)
     {
         winLoseText.text = message;

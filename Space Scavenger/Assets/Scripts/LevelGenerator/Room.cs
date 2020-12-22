@@ -7,6 +7,8 @@ public class Room : MonoBehaviour
     public GameObject connectorA;
     public GameObject connectorB;
 
+    public string RoomType { get; set; }
+
     public GameObject GetConnectorA() {
         return connectorA;
     }
@@ -21,4 +23,6 @@ public class Room : MonoBehaviour
         Destroy(connectorA);
         Destroy(connectorB);
     }
+
+
 }
