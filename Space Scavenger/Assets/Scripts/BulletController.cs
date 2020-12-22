@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
         // move the bullet forward 
         transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
 
-        DebugForward();
+        //DebugForward();
         Destroy(gameObject, bulletLife);
     }
 

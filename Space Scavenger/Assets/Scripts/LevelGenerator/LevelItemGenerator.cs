@@ -38,7 +38,30 @@ public class LevelItemGenerator : MonoBehaviour
             } 
             else if (room.GetComponent<Room>().RoomType == "F")
             {
+                if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Easy")
+                {
+                    foreach (GameObject monster in room.GetComponent<FinishRoomScript>().easyMonsterLocations)
+                    {
+                        Instantiate(monsterPrefab, monster.transform);
+                    }
 
+                    foreach (GameObject pickUp in room.GetComponent<FinishRoomScript>().easyPickUpLocations)
+                    {
+                        Instantiate(GetRandomPickUpType(), pickUp.transform);
+                    }
+                }
+                else if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Hard")
+                {
+                    foreach (GameObject monster in room.GetComponent<FinishRoomScript>().hardMonsterLcoations)
+                    {
+                        Instantiate(monsterPrefab, monster.transform);
+                    }
+
+                    foreach (GameObject pickUp in room.GetComponent<FinishRoomScript>().hardPickUpLocations)
+                    {
+                        Instantiate(GetRandomPickUpType(), pickUp.transform);
+                    }
+                }
             }
             else
             {
