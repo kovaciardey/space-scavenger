@@ -42,7 +42,7 @@ public class LevelItemGenerator : MonoBehaviour
                 {
                     foreach (GameObject monster in room.GetComponent<FinishRoomScript>().easyMonsterLocations)
                     {
-                        //Instantiate(monsterPrefab, monster.transform);
+                        Instantiate(monsterPrefab, monster.transform);
                     }
 
                     foreach (GameObject pickUp in room.GetComponent<FinishRoomScript>().easyPickUpLocations)
@@ -54,7 +54,7 @@ public class LevelItemGenerator : MonoBehaviour
                 {
                     foreach (GameObject monster in room.GetComponent<FinishRoomScript>().hardMonsterLcoations)
                     {
-                        //Instantiate(monsterPrefab, monster.transform);
+                        Instantiate(monsterPrefab, monster.transform);
                     }
 
                     foreach (GameObject pickUp in room.GetComponent<FinishRoomScript>().hardPickUpLocations)
@@ -74,14 +74,14 @@ public class LevelItemGenerator : MonoBehaviour
                 {
                     foreach (GameObject monsterLocation in room.GetComponent<IntermediaryRoomScript>().easyMonsterLocations)
                     {
-                        //Instantiate(monsterPrefab, monsterLocation.transform);
+                        Instantiate(monsterPrefab, monsterLocation.transform);
                     }
                 }
                 else if (GetComponent<LevelCodeParser>().LevelMission.Difficulty == "Hard")
                 {
                     foreach (GameObject monsterLocation in room.GetComponent<IntermediaryRoomScript>().hardMonsterLocations)
                     {
-                        //Instantiate(monsterPrefab, monsterLocation.transform);
+                        Instantiate(monsterPrefab, monsterLocation.transform);
                     }
                 }
             }

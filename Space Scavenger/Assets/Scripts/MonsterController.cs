@@ -26,6 +26,7 @@ public class MonsterController : MonoBehaviour
     {
         gameObject.GetComponent<SpawnPickUpOnKill>().SpawnPickUp();
 
+        // add resources to the player if they kill a monster
         if (killedbyPlayer)
         {
             player.GetComponent<ScrapController>().AddScrap(gameObject.GetComponent<ScrapSpawner>().GetScrapToDrop());

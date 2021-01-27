@@ -43,6 +43,11 @@ public class ShieldController : MonoBehaviour
         }
     }
 
+    public void ResetShields()
+    {
+        currentShields = maxShields;
+    }
+
     public void ApplyShieldDamage()
     {
         if (currentShields - 1 <= 0)
@@ -58,11 +63,6 @@ public class ShieldController : MonoBehaviour
         {
             StartCoroutine("ShieldRecharge");
         }
-    }
-
-    public void ResetShields()
-    {
-        currentShields = maxShields;
     }
 
     IEnumerator ShieldRecharge()

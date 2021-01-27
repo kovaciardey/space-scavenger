@@ -54,10 +54,12 @@ public class LevelCodeParser : MonoBehaviour
 
         foreach (string room in roomsList)
         {
+            // instantiate the next room at the connector position of the previous room
             GameObject roomPrefab = Instantiate(roomPrefabMap[room], position, Quaternion.identity);
             position = roomPrefab.GetComponent<Room>().GetConnectorB().transform.position;
             roomPrefab.GetComponent<Room>().RoomType = room;
 
+            // save references to the important rooms
             if (room == "S")
             {
                 StartingRoom = roomPrefab;
@@ -68,6 +70,7 @@ public class LevelCodeParser : MonoBehaviour
                 FinishRoom = roomPrefab;
             }
 
+            // add the game object under an empty parent to maintain order in the scene
             roomPrefab.transform.parent = levelParent.transform;
 
             roomGameObjects.Add(roomPrefab);
